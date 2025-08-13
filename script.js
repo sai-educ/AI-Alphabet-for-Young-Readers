@@ -1,5 +1,3 @@
-// AI Alphabet for Young Readers - Enhanced JavaScript with Flash Cards Quiz
-
 // Quiz Data
 const quizData = [
     { letter: 'A', word: 'Algorithm', definition: 'A set of steps a computer follows to solve a problem or do a job.', hint: 'A set of steps a computer follows to solve a problem', funFact: 'The word "algorithm" comes from the name of a 9th-century Persian mathematician, Al-Khwarizmi!' },
