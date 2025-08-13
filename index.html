@@ -6,455 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="AI Alphabet for Young Readers - Words to Know and Things to Do from A to Z" />
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Fun Background Elements -->
-    <div class="fun-background">
-        <div class="bubble bubble-1">🤖</div>
-        <div class="bubble bubble-2">💡</div>
-        <div class="bubble bubble-3">🚀</div>
-        <div class="bubble bubble-4">⭐</div>
-        <div class="bubble bubble-5">🎨</div>
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="star star-1">✨</div>
-        <div class="star star-2">⭐</div>
-        <div class="star star-3">🌟</div>
-    </div>
 
-    <header class="fun-header">
+    <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="robot-mascot">
-                        <div class="robot-head">
-                            <div class="robot-eye left-eye"></div>
-                            <div class="robot-eye right-eye"></div>
-                            <div class="robot-mouth"></div>
-                        </div>
-                    </div>
+                    <div class="robot-mascot">🤖</div>
                     <div class="title-group">
-                        <h1 class="rainbow-text">AI Alphabet Adventure</h1>
-                        <p class="tagline">🌈 Learn AI the Fun Way! 🎮</p>
+                        <h1>AI Alphabet Adventure</h1>
+                        <p class="tagline">Learn AI the Fun Way!</p>
                     </div>
                 </div>
-                <nav class="fun-nav">
-                    <button class="nav-btn home-btn" onclick="showSection('home')">
-                        <span class="btn-icon">🏠</span>
-                        <span>Home</span>
-                    </button>
-                    <button class="nav-btn learn-btn" onclick="showSection('alphabet')">
-                        <span class="btn-icon">📚</span>
-                        <span>Learn</span>
-                    </button>
-                    <button class="nav-btn quiz-btn" onclick="showSection('flashcards')">
-                        <span class="btn-icon">🎯</span>
-                        <span>Quiz</span>
-                    </button>
-                    <button class="nav-btn about-btn" onclick="showSection('about')">
-                        <span class="btn-icon">ℹ️</span>
-                        <span>About</span>
-                    </button>
+                <nav>
+                    <button class="nav-btn active" onclick="showSection('home')">🏠 Home</button>
+                    <button class="nav-btn" onclick="showSection('alphabet')">📚 Learn</button>
+                    <button class="nav-btn" onclick="showSection('flashcards')">🎯 Quiz</button>
+                    <button class="nav-btn" onclick="showSection('about')">ℹ️ About</button>
                 </nav>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- Home Section -->
-        <section id="home" class="home-section">
-            <div class="hero-wrapper">
-                <div class="welcome-banner">
-                    <h2 class="welcome-title">
-                        <span class="wave">👋</span> Welcome Young Explorers!
-                    </h2>
-                    <p class="welcome-text">
-                        Ready for an amazing adventure into the world of AI? 
-                        Let's learn, play, and discover together!
-                    </p>
-                </div>
+        <section id="home">
+            <div class="welcome-banner">
+                <h2><span class="wave">👋</span> Welcome Explorers!</h2>
+                <p>Ready for an amazing adventure into the world of AI? Let's learn, play, and discover together!</p>
+            </div>
 
-                <div class="adventure-cards">
-                    <div class="adventure-card card-learn" onclick="showSection('alphabet')">
-                        <div class="card-inner">
-                            <div class="card-emoji">🎓</div>
-                            <h3>Learn ABC</h3>
-                            <p>Discover 26 AI words!</p>
-                            <div class="card-sparkle">✨</div>
-                        </div>
-                    </div>
-                    <div class="adventure-card card-play" onclick="showSection('flashcards')">
-                        <div class="card-inner">
-                            <div class="card-emoji">🎮</div>
-                            <h3>Play Quiz</h3>
-                            <p>Test your knowledge!</p>
-                            <div class="card-sparkle">⭐</div>
-                        </div>
-                    </div>
-                    <div class="adventure-card card-create">
-                        <div class="card-inner">
-                            <div class="card-emoji">🎨</div>
-                            <h3>Create</h3>
-                            <p>Fun activities await!</p>
-                            <div class="card-sparkle">🌟</div>
-                        </div>
-                    </div>
+            <div class="adventure-cards">
+                <div class="adventure-card" onclick="showSection('alphabet')">
+                    <div class="card-emoji">🎓</div>
+                    <h3>Learn the ABCs</h3>
+                    <p>Discover 26 core AI concepts, each explained in a simple and fun way.</p>
                 </div>
+                <div class="adventure-card" onclick="showSection('flashcards')">
+                    <div class="card-emoji">🎮</div>
+                    <h3>Play the Quiz</h3>
+                    <p>Test your knowledge with an interactive quiz and become an AI champion.</p>
+                </div>
+                <div class="adventure-card">
+                    <div class="card-emoji">🎨</div>
+                    <h3>Creative Activities</h3>
+                    <p>Engage in fun activities and bring AI concepts to life.</p>
+                </div>
+            </div>
 
-                <div class="fun-facts-banner">
-                    <div class="fun-fact-item">
-                        <span class="fact-icon">🤖</span>
-                        <span class="fact-text">26 AI Concepts</span>
-                    </div>
-                    <div class="fun-fact-item">
-                        <span class="fact-icon">🎯</span>
-                        <span class="fact-text">Interactive Quiz</span>
-                    </div>
-                    <div class="fun-fact-item">
-                        <span class="fact-icon">🚀</span>
-                        <span class="fact-text">Fun Activities</span>
-                    </div>
-                </div>
-
-                <div class="start-journey">
-                    <button class="big-start-btn" onclick="showSection('alphabet')">
-                        <span>Start Your Journey!</span>
-                        <span class="btn-rainbow">🌈</span>
-                    </button>
-                </div>
+            <div class="start-journey">
+                <button class="big-start-btn" onclick="showSection('alphabet')">Start Your Journey! 🚀</button>
             </div>
         </section>
 
-        <!-- Flash Cards Quiz Section -->
-        <section id="flashcards" class="quiz-section" style="display: none;">
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h2 class="quiz-title">
-                        <span class="title-icon">🎯</span>
-                        Super AI Quiz Challenge!
-                        <span class="title-icon">🏆</span>
-                    </h2>
-                </div>
+        <section id="flashcards" class="hidden">
+            <div class="quiz-header">
+                <h2>AI Quiz Challenge!</h2>
+            </div>
 
-                <div class="score-board">
-                    <div class="score-item score-points">
-                        <div class="score-icon">⭐</div>
-                        <div class="score-info">
-                            <span class="score-label">Score</span>
-                            <span class="score-value" id="quiz-score">0</span>
+            <div class="score-board">
+                <div class="score-item">
+                    <div class="score-label">Score</div>
+                    <div class="score-value" id="quiz-score">0</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Progress</div>
+                    <div class="score-value"><span id="current-question">1</span>/26</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Streak</div>
+                    <div class="score-value" id="quiz-streak">0</div>
+                </div>
+            </div>
+
+            <div class="quiz-card-wrapper">
+                <div class="quiz-card" id="flashcard">
+                    <div class="card-front">
+                        <div id="card-letter">A</div>
+                        <p id="question-hint">"A set of steps a computer follows"</p>
+                        <div class="answer-box">
+                            <input type="text" id="answer-input" placeholder="What's the word?">
+                            <button class="check-answer-btn" onclick="checkAnswer()">Check Answer</button>
                         </div>
                     </div>
-                    <div class="score-item score-progress">
-                        <div class="score-icon">📊</div>
-                        <div class="score-info">
-                            <span class="score-label">Progress</span>
-                            <span class="score-value"><span id="current-question">1</span>/26</span>
-                        </div>
-                    </div>
-                    <div class="score-item score-streak">
-                        <div class="score-icon">🔥</div>
-                        <div class="score-info">
-                            <span class="score-label">Streak</span>
-                            <span class="score-value" id="quiz-streak">0</span>
-                        </div>
+                    <div class="card-back">
+                        <div id="result-icon">🎉</div>
+                        <h3 id="result-word">Algorithm</h3>
+                        <p id="result-definition">A set of steps a computer follows to solve a problem.</p>
+                        <div id="fun-fact">⭐ Fun Fact: The word "algorithm" comes from a mathematician named Al-Khwarizmi!</div>
+                        <button class="helper-btn" onclick="nextQuestion()">Next →</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="quiz-card-wrapper">
-                    <div class="quiz-card" id="flashcard">
-                        <div class="card-front">
-                            <div class="question-letter" id="card-letter">A</div>
-                            <div class="question-content">
-                                <p class="question-text">What AI word starts with this letter?</p>
-                                <p class="question-hint" id="question-hint">"A set of steps a computer follows"</p>
-                            </div>
-                            <div class="answer-box">
-                                <input type="text" id="answer-input" class="fun-input" 
-                                       placeholder="Type your answer here! 🎯" autocomplete="off">
-                                <button class="check-answer-btn" onclick="checkAnswer()">
-                                    Check! 
-                                    <span class="btn-icon">✅</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="result-display">
-                                <div class="result-emoji" id="result-icon">🎉</div>
-                                <h3 class="result-word" id="result-word">Algorithm</h3>
-                                <p class="result-meaning" id="result-definition">Definition here</p>
-                                <div class="fun-fact-box">
-                                    <span class="fact-star">⭐</span>
-                                    <p id="fun-fact">Fun fact here!</p>
-                                </div>
-                                <button class="next-question-btn" onclick="nextQuestion()">
-                                    Next Adventure 
-                                    <span class="btn-arrow">→</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz-helpers">
-                    <button class="helper-btn reset-btn" onclick="resetQuiz()">
-                        <span>🔄</span> Start Over
-                    </button>
-                    <button class="helper-btn skip-btn" onclick="skipQuestion()">
-                        Skip <span>⏭️</span>
-                    </button>
-                </div>
-
-                <!-- Celebration Container -->
-                <div id="confetti-container"></div>
-                <div id="celebration-message" class="celebration-message"></div>
+            <div class="quiz-helpers">
+                <button class="helper-btn" onclick="skipQuestion()">Skip Question</button>
+                <button class="helper-btn" onclick="resetQuiz()">Reset Quiz</button>
             </div>
         </section>
 
-        <!-- Alphabet Grid Section -->
-        <section id="alphabet" class="alphabet-section" style="display: none;">
+        <section id="alphabet" class="hidden">
             <div class="alphabet-header">
-                <h2 class="alphabet-title">
-                    <span class="sparkle">✨</span>
-                    Choose Your Letter Adventure!
-                    <span class="sparkle">✨</span>
-                </h2>
-                <p class="alphabet-subtitle">Click any letter to start learning!</p>
+                <h2>Choose a Letter!</h2>
+                <p>Click any letter to start your learning adventure.</p>
             </div>
-
             <div class="alphabet-playground">
-                <button class="abc-tile tile-a" onclick="showLetter('a')">
-                    <span class="tile-letter">A</span>
-                    <span class="tile-word">Algorithm</span>
-                    <span class="tile-icon">🤖</span>
-                </button>
-                <button class="abc-tile tile-b" onclick="showLetter('b')">
-                    <span class="tile-letter">B</span>
-                    <span class="tile-word">Bot</span>
-                    <span class="tile-icon">💬</span>
-                </button>
-                <button class="abc-tile tile-c" onclick="showLetter('c')">
-                    <span class="tile-letter">C</span>
-                    <span class="tile-word">Code</span>
-                    <span class="tile-icon">💻</span>
-                </button>
-                <button class="abc-tile tile-d" onclick="showLetter('d')">
-                    <span class="tile-letter">D</span>
-                    <span class="tile-word">Data</span>
-                    <span class="tile-icon">📊</span>
-                </button>
-                <button class="abc-tile tile-e" onclick="showLetter('e')">
-                    <span class="tile-letter">E</span>
-                    <span class="tile-word">Ethics</span>
-                    <span class="tile-icon">⚖️</span>
-                </button>
-                <button class="abc-tile tile-f" onclick="showLetter('f')">
-                    <span class="tile-letter">F</span>
-                    <span class="tile-word">Fake</span>
-                    <span class="tile-icon">🎭</span>
-                </button>
-                <button class="abc-tile tile-g" onclick="showLetter('g')">
-                    <span class="tile-letter">G</span>
-                    <span class="tile-word">Glitch</span>
-                    <span class="tile-icon">⚡</span>
-                </button>
-                <button class="abc-tile tile-h" onclick="showLetter('h')">
-                    <span class="tile-letter">H</span>
-                    <span class="tile-word">Hallucination</span>
-                    <span class="tile-icon">💭</span>
-                </button>
-                <button class="abc-tile tile-i" onclick="showLetter('i')">
-                    <span class="tile-letter">I</span>
-                    <span class="tile-word">Internet</span>
-                    <span class="tile-icon">🌐</span>
-                </button>
-                <button class="abc-tile tile-j" onclick="showLetter('j')">
-                    <span class="tile-letter">J</span>
-                    <span class="tile-word">Judgement</span>
-                    <span class="tile-icon">🤔</span>
-                </button>
-                <button class="abc-tile tile-k" onclick="showLetter('k')">
-                    <span class="tile-letter">K</span>
-                    <span class="tile-word">Keyword</span>
-                    <span class="tile-icon">🔑</span>
-                </button>
-                <button class="abc-tile tile-l" onclick="showLetter('l')">
-                    <span class="tile-letter">L</span>
-                    <span class="tile-word">Literacy</span>
-                    <span class="tile-icon">📖</span>
-                </button>
-                <button class="abc-tile tile-m" onclick="showLetter('m')">
-                    <span class="tile-letter">M</span>
-                    <span class="tile-word">Machine Learning</span>
-                    <span class="tile-icon">🧠</span>
-                </button>
-                <button class="abc-tile tile-n" onclick="showLetter('n')">
-                    <span class="tile-letter">N</span>
-                    <span class="tile-word">Neural Network</span>
-                    <span class="tile-icon">🕸️</span>
-                </button>
-                <button class="abc-tile tile-o" onclick="showLetter('o')">
-                    <span class="tile-letter">O</span>
-                    <span class="tile-word">Object Spotter</span>
-                    <span class="tile-icon">👁️</span>
-                </button>
-                <button class="abc-tile tile-p" onclick="showLetter('p')">
-                    <span class="tile-letter">P</span>
-                    <span class="tile-word">Prompt</span>
-                    <span class="tile-icon">✍️</span>
-                </button>
-                <button class="abc-tile tile-q" onclick="showLetter('q')">
-                    <span class="tile-letter">Q</span>
-                    <span class="tile-word">Query</span>
-                    <span class="tile-icon">❓</span>
-                </button>
-                <button class="abc-tile tile-r" onclick="showLetter('r')">
-                    <span class="tile-letter">R</span>
-                    <span class="tile-word">Robot</span>
-                    <span class="tile-icon">🤖</span>
-                </button>
-                <button class="abc-tile tile-s" onclick="showLetter('s')">
-                    <span class="tile-letter">S</span>
-                    <span class="tile-word">Siri</span>
-                    <span class="tile-icon">🗣️</span>
-                </button>
-                <button class="abc-tile tile-t" onclick="showLetter('t')">
-                    <span class="tile-letter">T</span>
-                    <span class="tile-word">Turing Test</span>
-                    <span class="tile-icon">🧪</span>
-                </button>
-                <button class="abc-tile tile-u" onclick="showLetter('u')">
-                    <span class="tile-letter">U</span>
-                    <span class="tile-word">Unplug</span>
-                    <span class="tile-icon">🔌</span>
-                </button>
-                <button class="abc-tile tile-v" onclick="showLetter('v')">
-                    <span class="tile-letter">V</span>
-                    <span class="tile-word">Voice</span>
-                    <span class="tile-icon">🎤</span>
-                </button>
-                <button class="abc-tile tile-w" onclick="showLetter('w')">
-                    <span class="tile-letter">W</span>
-                    <span class="tile-word">WiFi</span>
-                    <span class="tile-icon">📶</span>
-                </button>
-                <button class="abc-tile tile-x" onclick="showLetter('x')">
-                    <span class="tile-letter">X</span>
-                    <span class="tile-word">eXploration</span>
-                    <span class="tile-icon">🔍</span>
-                </button>
-                <button class="abc-tile tile-y" onclick="showLetter('y')">
-                    <span class="tile-letter">Y</span>
-                    <span class="tile-word">You</span>
-                    <span class="tile-icon">👦</span>
-                </button>
-                <button class="abc-tile tile-z" onclick="showLetter('z')">
-                    <span class="tile-letter">Z</span>
-                    <span class="tile-word">Zeroes & Ones</span>
-                    <span class="tile-icon">0️⃣1️⃣</span>
-                </button>
+                <script>
+                    const quizData = [ { letter: 'A', word: 'Algorithm' }, { letter: 'B', word: 'Bot' }, { letter: 'C', word: 'Code' }, { letter: 'D', word: 'Data' }, { letter: 'E', word: 'Ethics' }, { letter: 'F', word: 'Fake' }, { letter: 'G', word: 'Glitch' }, { letter: 'H', word: 'Hallucination' }, { letter: 'I', word: 'Internet' }, { letter: 'J', word: 'Judgement' }, { letter: 'K', word: 'Keyword' }, { letter: 'L', word: 'Literacy' }, { letter: 'M', word: 'Machine Learning' }, { letter: 'N', word: 'Neural Network' }, { letter: 'O', word: 'Object Spotter' }, { letter: 'P', word: 'Prompt' }, { letter: 'Q', word: 'Query' }, { letter: 'R', word: 'Robot' }, { letter: 'S', word: 'Siri' }, { letter: 'T', word: 'Turing Test' }, { letter: 'U', word: 'Unplug' }, { letter: 'V', word: 'Voice Recognition' }, { letter: 'W', word: 'WiFi' }, { letter: 'X', word: 'eXploration' }, { letter: 'Y', word: 'You' }, { letter: 'Z', word: 'Zeroes and Ones' } ];
+                    const playground = document.querySelector('.alphabet-playground');
+                    quizData.forEach(item => {
+                        playground.innerHTML += `
+                            <button class="abc-tile" onclick="showLetter('${item.letter.toLowerCase()}')">
+                                <div class="tile-letter">${item.letter}</div>
+                                <div class="tile-word">${item.word}</div>
+                            </button>
+                        `;
+                    });
+                </script>
             </div>
         </section>
-
-        <!-- Letter Content Example (Letter A) -->
-        <section id="letter-a" class="letter-detail-section">
-            <div class="letter-detail-card">
-                <div class="detail-header">
-                    <div class="detail-letter-badge">
-                        <span class="badge-letter">A</span>
-                        <span class="badge-stars">⭐⭐⭐</span>
-                    </div>
-                    <div class="detail-title">
-                        <h2 class="detail-word">Algorithm</h2>
-                        <p class="detail-tagline">Let's learn about Algorithms!</p>
-                    </div>
-                </div>
-
-                <div class="definition-card">
-                    <div class="definition-robot">🤖</div>
-                    <div class="definition-bubble">
-                        <p><strong>Estella AI says:</strong></p>
-                        <p class="definition-text">A set of steps a computer follows to solve a problem or do a job.</p>
-                    </div>
-                </div>
-
-                <div class="activities-section">
-                    <h3 class="activities-title">
-                        <span>🎯</span> Fun Activities <span>🎨</span>
-                    </h3>
-                    <div class="activity-cards">
-                        <div class="activity-bubble">
-                            <div class="activity-header">
-                                <span class="activity-emoji">✈️</span>
-                                <h4>TO DO</h4>
-                            </div>
-                            <p>What algorithm will you write for making a paper airplane? 
-                               <a href="#" class="fun-link">Here's one from AI!</a></p>
-                        </div>
-                        <div class="activity-bubble">
-                            <div class="activity-header">
-                                <span class="activity-emoji">🔍</span>
-                                <h4>LEARN MORE</h4>
-                            </div>
-                            <p>Who was <a href="#" class="fun-link">Bessie Coleman</a>?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="letter-navigation">
-                    <button class="nav-button back-btn" onclick="showSection('alphabet')">
-                        <span>←</span> Back to Letters
-                    </button>
-                    <button class="nav-button next-btn" onclick="showLetter('b')">
-                        Next: Bot <span>→</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
+        
+        <section id="about" class="hidden">
             <div class="about-card">
-                <h2 class="about-title">
-                    <span>📚</span> About Our AI Adventure <span>🚀</span>
-                </h2>
-                
-                <div class="about-content">
-                    <div class="about-bubble">
-                        <h3>👋 Welcome Teachers & Families!</h3>
-                        <p>This fun learning resource helps young readers understand AI concepts through engaging activities and kid-friendly explanations!</p>
+                <h2>About Our Adventure</h2>
+                <p>This fun learning resource helps young readers understand AI concepts through engaging activities and kid-friendly explanations!</p>
+                <div class="creators-section">
+                    <h3>Created By</h3>
+                    <div class="creators-grid">
+                        <div class="creator-badge">Robert W. Maloy</div>
+                        <div class="creator-badge">Chenyang Xu</div>
+                        <div class="creator-badge">Sharon A. Edwards</div>
+                        <div class="creator-badge">Aubrey Coyne</div>
+                        <div class="creator-badge">Julia Plotniak</div>
                     </div>
-
-                    <div class="creators-section">
-                        <h3>🌟 Created By</h3>
-                        <div class="creators-grid">
-                            <div class="creator-badge">Robert W. Maloy</div>
-                            <div class="creator-badge">Chenyang Xu</div>
-                            <div class="creator-badge">Sharon A. Edwards</div>
-                            <div class="creator-badge">Aubrey Coyne</div>
-                            <div class="creator-badge">Julia Plotniak</div>
-                        </div>
-                        <p class="university">🎓 University of Massachusetts Amherst</p>
-                    </div>
+                    <p class="university">🎓 University of Massachusetts Amherst</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="fun-footer">
-        <div class="footer-content">
-            <div class="footer-mascot">🤖</div>
+    <footer>
+        <div class="container">
             <p>© 2025 AI Alphabet Adventure</p>
             <p>Made with ❤️ for young learners everywhere!</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Simple section toggling
+        function showSection(sectionId) {
+            document.querySelectorAll('main section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.nav-btn[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
 </body>
 </html>
