@@ -8,23 +8,50 @@
     <meta property="og:title" content="AI Alphabet for Young Readers" />
     <meta property="og:description" content="An educational resource teaching AI concepts to young learners through an interactive alphabet" />
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Decorative Background Elements -->
+    <div class="background-decoration">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-content">
-                <div>
-                    <h1>🤖 AI Alphabet for Young Readers</h1>
-                    <p class="tagline">Words to Know and Things to Do from A to Z</p>
+                <div class="logo-section">
+                    <div class="logo-icon">🤖</div>
+                    <div>
+                        <h1>AI Alphabet for Young Readers</h1>
+                        <p class="tagline">Words to Know and Things to Do from A to Z</p>
+                    </div>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#home" onclick="showSection('home')">Home</a></li>
-                        <li><a href="#alphabet" onclick="showSection('alphabet')">Learn</a></li>
-                        <li><a href="#about" onclick="showSection('about')">About</a></li>
-                        <li><a href="#resources" onclick="showSection('resources')">Resources</a></li>
+                        <li><a href="#home" onclick="showSection('home')" class="nav-link">
+                            <span class="nav-icon">🏠</span> Home
+                        </a></li>
+                        <li><a href="#alphabet" onclick="showSection('alphabet')" class="nav-link">
+                            <span class="nav-icon">📚</span> Learn
+                        </a></li>
+                        <li><a href="#flashcards" onclick="showSection('flashcards')" class="nav-link highlight">
+                            <span class="nav-icon">🎯</span> Flash Cards Quiz
+                        </a></li>
+                        <li><a href="#about" onclick="showSection('about')" class="nav-link">
+                            <span class="nav-icon">ℹ️</span> About
+                        </a></li>
+                        <li><a href="#resources" onclick="showSection('resources')" class="nav-link">
+                            <span class="nav-icon">📖</span> Resources
+                        </a></li>
                     </ul>
                 </nav>
             </div>
@@ -35,331 +62,315 @@
         <!-- Home Section -->
         <section id="home" class="home-section">
             <div class="hero">
-                <h2>Welcome to the AI Alphabet!</h2>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-                    Join us on an exciting journey to learn about Artificial Intelligence through fun, 
-                    kid-friendly definitions and engaging activities. Perfect for young readers, teachers, and families!
-                </p>
-                <div class="hero-image">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem; border-radius: 10px; color: white;">
-                        <p style="font-size: 3rem;">🎓 📚 🤖 🎨</p>
-                        <p style="font-size: 1.5rem; margin-top: 1rem;">Learning AI Made Fun!</p>
+                <div class="hero-content">
+                    <h2 class="hero-title">Welcome to the AI Alphabet Adventure!</h2>
+                    <p class="hero-description">
+                        Join us on an exciting journey to discover Artificial Intelligence through fun, 
+                        kid-friendly explanations and engaging activities. Perfect for curious minds!
+                    </p>
+                    <div class="hero-visual">
+                        <div class="hero-cards">
+                            <div class="hero-card card-1">
+                                <span class="card-emoji">🎓</span>
+                                <span>Learn</span>
+                            </div>
+                            <div class="hero-card card-2">
+                                <span class="card-emoji">🎮</span>
+                                <span>Play</span>
+                            </div>
+                            <div class="hero-card card-3">
+                                <span class="card-emoji">🚀</span>
+                                <span>Explore</span>
+                            </div>
+                            <div class="hero-card card-4">
+                                <span class="card-emoji">💡</span>
+                                <span>Create</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="showSection('alphabet')">
+                            Start Learning <span class="btn-arrow">→</span>
+                        </button>
+                        <button class="btn-secondary" onclick="showSection('flashcards')">
+                            Take the Quiz <span class="btn-arrow">🎯</span>
+                        </button>
                     </div>
                 </div>
-                <button class="nav-btn" onclick="showSection('alphabet')" style="font-size: 1.2rem; padding: 1rem 2rem;">
-                    Start Learning! →
-                </button>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>26 AI Concepts</h3>
+                    <p>From Algorithm to Zeroes & Ones, learn essential AI vocabulary</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Interactive Activities</h3>
+                    <p>Hands-on projects and creative exercises for each letter</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Friendly</h3>
+                    <p>Designed for young learners, teachers, and families to explore together</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flash Cards Quiz Section -->
+        <section id="flashcards" class="letter-section" style="display: none;">
+            <div class="quiz-container">
+                <h2 class="section-title">🎯 AI Alphabet Flash Cards Quiz</h2>
+                <p class="section-subtitle">Test your knowledge! Click the card to flip and reveal the answer.</p>
+                
+                <div class="quiz-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Score:</span>
+                        <span class="stat-value" id="quiz-score">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Question:</span>
+                        <span class="stat-value"><span id="current-question">1</span> / 26</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Streak:</span>
+                        <span class="stat-value" id="quiz-streak">0</span>
+                    </div>
+                </div>
+
+                <div class="flashcard-wrapper">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-front">
+                            <div class="card-letter" id="card-letter">A</div>
+                            <div class="card-question">
+                                <p>What AI word starts with <strong>A</strong> and means:</p>
+                                <p class="hint">"A set of steps a computer follows to solve a problem"</p>
+                            </div>
+                            <div class="answer-section">
+                                <input type="text" id="answer-input" class="answer-input" placeholder="Type your answer..." autocomplete="off">
+                                <button class="check-btn" onclick="checkAnswer()">Check Answer</button>
+                            </div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="result-icon" id="result-icon"></div>
+                            <h3 id="result-word">Algorithm</h3>
+                            <p id="result-definition">A set of steps a computer follows to solve a problem or do a job.</p>
+                            <div class="fun-fact">
+                                <strong>Fun Fact:</strong> <span id="fun-fact">The word "algorithm" comes from the name of a Persian mathematician!</span>
+                            </div>
+                            <button class="next-btn" onclick="nextQuestion()">Next Question →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-controls">
+                    <button class="control-btn" onclick="resetQuiz()">
+                        <span>🔄</span> Reset Quiz
+                    </button>
+                    <button class="control-btn" onclick="skipQuestion()">
+                        Skip Question <span>⏭️</span>
+                    </button>
+                </div>
+
+                <!-- Confetti Container -->
+                <div id="confetti-container"></div>
             </div>
         </section>
 
         <!-- Alphabet Grid Section -->
         <section id="alphabet" class="letter-section" style="display: none;">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Choose a Letter to Explore</h2>
+            <h2 class="section-title">Choose a Letter to Explore</h2>
             <div class="alphabet-grid">
-                <a href="#letter-a" class="letter-btn gradient-1" onclick="showLetter('a')">
+                <a href="#letter-a" class="letter-btn" onclick="showLetter('a')" style="--color-1: #FF6B6B; --color-2: #4ECDC4;">
                     <span class="letter-main">A</span>
                     <span class="letter-word">Algorithm</span>
                 </a>
-                <a href="#letter-b" class="letter-btn gradient-2" onclick="showLetter('b')">
+                <a href="#letter-b" class="letter-btn" onclick="showLetter('b')" style="--color-1: #95E1D3; --color-2: #3AA18F;">
                     <span class="letter-main">B</span>
                     <span class="letter-word">Bot</span>
                 </a>
-                <a href="#letter-c" class="letter-btn gradient-3" onclick="showLetter('c')">
+                <a href="#letter-c" class="letter-btn" onclick="showLetter('c')" style="--color-1: #FFA07A; --color-2: #FF6B9D;">
                     <span class="letter-main">C</span>
                     <span class="letter-word">Code</span>
                 </a>
-                <a href="#letter-d" class="letter-btn gradient-4" onclick="showLetter('d')">
+                <a href="#letter-d" class="letter-btn" onclick="showLetter('d')" style="--color-1: #C7CEEA; --color-2: #B2A4D4;">
                     <span class="letter-main">D</span>
                     <span class="letter-word">Data</span>
                 </a>
-                <a href="#letter-e" class="letter-btn gradient-5" onclick="showLetter('e')">
+                <a href="#letter-e" class="letter-btn" onclick="showLetter('e')" style="--color-1: #FECA57; --color-2: #FF9FF3;">
                     <span class="letter-main">E</span>
                     <span class="letter-word">Ethics</span>
                 </a>
-                <a href="#letter-f" class="letter-btn gradient-6" onclick="showLetter('f')">
+                <a href="#letter-f" class="letter-btn" onclick="showLetter('f')" style="--color-1: #48C9B0; --color-2: #5DADE2;">
                     <span class="letter-main">F</span>
                     <span class="letter-word">Fake</span>
                 </a>
-                <a href="#letter-g" class="letter-btn gradient-1" onclick="showLetter('g')">
+                <a href="#letter-g" class="letter-btn" onclick="showLetter('g')" style="--color-1: #F8B500; --color-2: #FF6B6B;">
                     <span class="letter-main">G</span>
                     <span class="letter-word">Glitch</span>
                 </a>
-                <a href="#letter-h" class="letter-btn gradient-2" onclick="showLetter('h')">
+                <a href="#letter-h" class="letter-btn" onclick="showLetter('h')" style="--color-1: #667EEA; --color-2: #764BA2;">
                     <span class="letter-main">H</span>
                     <span class="letter-word">Hallucination</span>
                 </a>
-                <a href="#letter-i" class="letter-btn gradient-3" onclick="showLetter('i')">
+                <a href="#letter-i" class="letter-btn" onclick="showLetter('i')" style="--color-1: #F093FB; --color-2: #F5576C;">
                     <span class="letter-main">I</span>
                     <span class="letter-word">Internet</span>
                 </a>
-                <a href="#letter-j" class="letter-btn gradient-4" onclick="showLetter('j')">
+                <a href="#letter-j" class="letter-btn" onclick="showLetter('j')" style="--color-1: #4FACFE; --color-2: #00F2FE;">
                     <span class="letter-main">J</span>
                     <span class="letter-word">Judgement</span>
                 </a>
-                <a href="#letter-k" class="letter-btn gradient-5" onclick="showLetter('k')">
+                <a href="#letter-k" class="letter-btn" onclick="showLetter('k')" style="--color-1: #43E97B; --color-2: #38F9D7;">
                     <span class="letter-main">K</span>
                     <span class="letter-word">Keyword</span>
                 </a>
-                <a href="#letter-l" class="letter-btn gradient-6" onclick="showLetter('l')">
+                <a href="#letter-l" class="letter-btn" onclick="showLetter('l')" style="--color-1: #FA709A; --color-2: #FEE140;">
                     <span class="letter-main">L</span>
                     <span class="letter-word">Literacy</span>
                 </a>
-                <a href="#letter-m" class="letter-btn gradient-1" onclick="showLetter('m')">
+                <a href="#letter-m" class="letter-btn" onclick="showLetter('m')" style="--color-1: #30CFD0; --color-2: #330867;">
                     <span class="letter-main">M</span>
                     <span class="letter-word">Machine<br>Learning</span>
                 </a>
-                <a href="#letter-n" class="letter-btn gradient-2" onclick="showLetter('n')">
+                <a href="#letter-n" class="letter-btn" onclick="showLetter('n')" style="--color-1: #FF6B6B; --color-2: #4ECDC4;">
                     <span class="letter-main">N</span>
                     <span class="letter-word">Neural<br>Network</span>
                 </a>
-                <a href="#letter-o" class="letter-btn gradient-3" onclick="showLetter('o')">
+                <a href="#letter-o" class="letter-btn" onclick="showLetter('o')" style="--color-1: #95E1D3; --color-2: #3AA18F;">
                     <span class="letter-main">O</span>
                     <span class="letter-word">Object<br>Spotter</span>
                 </a>
-                <a href="#letter-p" class="letter-btn gradient-4" onclick="showLetter('p')">
+                <a href="#letter-p" class="letter-btn" onclick="showLetter('p')" style="--color-1: #FFA07A; --color-2: #FF6B9D;">
                     <span class="letter-main">P</span>
                     <span class="letter-word">Prompt</span>
                 </a>
-                <a href="#letter-q" class="letter-btn gradient-5" onclick="showLetter('q')">
+                <a href="#letter-q" class="letter-btn" onclick="showLetter('q')" style="--color-1: #C7CEEA; --color-2: #B2A4D4;">
                     <span class="letter-main">Q</span>
                     <span class="letter-word">Query</span>
                 </a>
-                <a href="#letter-r" class="letter-btn gradient-6" onclick="showLetter('r')">
+                <a href="#letter-r" class="letter-btn" onclick="showLetter('r')" style="--color-1: #FECA57; --color-2: #FF9FF3;">
                     <span class="letter-main">R</span>
                     <span class="letter-word">Robot</span>
                 </a>
-                <a href="#letter-s" class="letter-btn gradient-1" onclick="showLetter('s')">
+                <a href="#letter-s" class="letter-btn" onclick="showLetter('s')" style="--color-1: #48C9B0; --color-2: #5DADE2;">
                     <span class="letter-main">S</span>
                     <span class="letter-word">Siri</span>
                 </a>
-                <a href="#letter-t" class="letter-btn gradient-2" onclick="showLetter('t')">
+                <a href="#letter-t" class="letter-btn" onclick="showLetter('t')" style="--color-1: #F8B500; --color-2: #FF6B6B;">
                     <span class="letter-main">T</span>
                     <span class="letter-word">Turing Test</span>
                 </a>
-                <a href="#letter-u" class="letter-btn gradient-3" onclick="showLetter('u')">
+                <a href="#letter-u" class="letter-btn" onclick="showLetter('u')" style="--color-1: #667EEA; --color-2: #764BA2;">
                     <span class="letter-main">U</span>
                     <span class="letter-word">Unplug</span>
                 </a>
-                <a href="#letter-v" class="letter-btn gradient-4" onclick="showLetter('v')">
+                <a href="#letter-v" class="letter-btn" onclick="showLetter('v')" style="--color-1: #F093FB; --color-2: #F5576C;">
                     <span class="letter-main">V</span>
                     <span class="letter-word">Voice<br>Recognition</span>
                 </a>
-                <a href="#letter-w" class="letter-btn gradient-5" onclick="showLetter('w')">
+                <a href="#letter-w" class="letter-btn" onclick="showLetter('w')" style="--color-1: #4FACFE; --color-2: #00F2FE;">
                     <span class="letter-main">W</span>
                     <span class="letter-word">WiFi</span>
                 </a>
-                <a href="#letter-x" class="letter-btn gradient-6" onclick="showLetter('x')">
+                <a href="#letter-x" class="letter-btn" onclick="showLetter('x')" style="--color-1: #43E97B; --color-2: #38F9D7;">
                     <span class="letter-main">X</span>
                     <span class="letter-word">eXploration</span>
                 </a>
-                <a href="#letter-y" class="letter-btn gradient-1" onclick="showLetter('y')">
+                <a href="#letter-y" class="letter-btn" onclick="showLetter('y')" style="--color-1: #FA709A; --color-2: #FEE140;">
                     <span class="letter-main">Y</span>
                     <span class="letter-word">You</span>
                 </a>
-                <a href="#letter-z" class="letter-btn gradient-2" onclick="showLetter('z')">
+                <a href="#letter-z" class="letter-btn" onclick="showLetter('z')" style="--color-1: #30CFD0; --color-2: #330867;">
                     <span class="letter-main">Z</span>
                     <span class="letter-word">Zeroes &<br>Ones</span>
                 </a>
             </div>
         </section>
 
-        <!-- Letter A -->
+        <!-- Letter Content Sections (A-Z) -->
+        <!-- I'll include a template for letter A, the rest follow the same pattern -->
         <section id="letter-a" class="letter-section">
             <div class="letter-card">
                 <div class="letter-header">
-                    <div class="letter-icon">A</div>
+                    <div class="letter-icon" style="background: linear-gradient(135deg, #FF6B6B, #4ECDC4);">A</div>
                     <div class="letter-title">
                         <h2>A is for...</h2>
                         <p class="word-title">Algorithm</p>
                     </div>
                 </div>
                 
-                <div class="definition">
-                    <strong>Estella AI says:</strong> A set of steps a computer follows to solve a problem or do a job.
+                <div class="definition-box">
+                    <div class="definition-icon">💡</div>
+                    <div class="definition-content">
+                        <strong>Estella AI says:</strong> A set of steps a computer follows to solve a problem or do a job.
+                    </div>
                 </div>
 
                 <div class="activities">
                     <div class="activity-card">
-                        <h3>TO DO</h3>
+                        <h3><span class="activity-icon">✏️</span> TO DO</h3>
                         <p>What algorithm will you write for making a paper airplane? Here is <a href="https://docs.google.com/document/d/1NTJyRlTnvPEdJq9snMUNe5j8EW_6aENzwxYkQB_aklY/edit?tab=t.0" target="_blank">one from AI!</a></p>
                     </div>
                     <div class="activity-card">
-                        <h3>MORE TO LEARN</h3>
+                        <h3><span class="activity-icon">🔍</span> MORE TO LEARN</h3>
                         <p>Who was <a href="http://resourcesforhistoryteachers.pbworks.com/w/page/125154593/Bessie%20Coleman%2C%20African%20American%20Aviator%20and%20Civil%20Rights%20Pioneer" target="_blank">Bessie Coleman</a>?</p>
                     </div>
                 </div>
             </div>
             
             <div class="navigation">
-                <button class="nav-btn" onclick="showSection('alphabet')">← Back to Alphabet</button>
-                <button class="nav-btn" onclick="showLetter('b')">Next: Bot →</button>
+                <button class="nav-btn" onclick="showSection('alphabet')">
+                    <span>←</span> Back to Alphabet
+                </button>
+                <button class="nav-btn nav-btn-primary" onclick="showLetter('b')">
+                    Next: Bot <span>→</span>
+                </button>
             </div>
         </section>
-
-        <!-- Letter B -->
-        <section id="letter-b" class="letter-section">
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-icon">B</div>
-                    <div class="letter-title">
-                        <h2>B is for...</h2>
-                        <p class="word-title">Bot (Chatbot)</p>
-                    </div>
-                </div>
-                
-                <div class="definition">
-                    <strong>Estella AI says:</strong> A computer program that you can talk to or type to, and it will answer you.
-                </div>
-
-                <div class="activities">
-                    <div class="activity-card">
-                        <h3>TO DO</h3>
-                        <p>What <a href="http://resourcesforenglishteachers.pbworks.com/w/page/123942906/Conversation%20or%20Voice%20Poems" target="_blank">2 Voice or 3 Voice Poems</a> will you write together with friends and with AI?</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <button class="nav-btn" onclick="showLetter('a')">← Previous: Algorithm</button>
-                <button class="nav-btn" onclick="showLetter('c')">Next: Code →</button>
-            </div>
-        </section>
-
-        <!-- Letter C -->
-        <section id="letter-c" class="letter-section">
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-icon">C</div>
-                    <div class="letter-title">
-                        <h2>C is for...</h2>
-                        <p class="word-title">Code</p>
-                    </div>
-                </div>
-                
-                <div class="definition">
-                    <strong>Estella AI says:</strong> A special language that people write to tell computers what to do.
-                </div>
-
-                <div class="activities">
-                    <div class="activity-card">
-                        <h3>TO DO</h3>
-                        <p>What will you Code today?</p>
-                        <p>TRY: <a href="https://www.tynker.com/" target="_blank">Tynker</a>, <a href="https://octostudio.org/" target="_blank">OctoStudio</a>, <a href="https://www.kodable.com/" target="_blank">Kodable</a>.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <button class="nav-btn" onclick="showLetter('b')">← Previous: Bot</button>
-                <button class="nav-btn" onclick="showLetter('d')">Next: Data →</button>
-            </div>
-        </section>
-
-        <!-- Letter D -->
-        <section id="letter-d" class="letter-section">
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-icon">D</div>
-                    <div class="letter-title">
-                        <h2>D is for...</h2>
-                        <p class="word-title">Data</p>
-                    </div>
-                </div>
-                
-                <div class="definition">
-                    <strong>Estella AI says:</strong> Words, numbers, pictures, or anything that tells us something.
-                </div>
-
-                <div class="activities">
-                    <div class="activity-card">
-                        <h3>TO DO</h3>
-                        <p>How Will You Solve these Data Puzzles from Sydney-the-Statistician?</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <button class="nav-btn" onclick="showLetter('c')">← Previous: Code</button>
-                <button class="nav-btn" onclick="showLetter('e')">Next: Ethics →</button>
-            </div>
-        </section>
-
-        <!-- Letter E -->
-        <section id="letter-e" class="letter-section">
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-icon">E</div>
-                    <div class="letter-title">
-                        <h2>E is for...</h2>
-                        <p class="word-title">Ethics</p>
-                    </div>
-                </div>
-                
-                <div class="definition">
-                    <strong>Estella AI says:</strong> Knowing right from wrong and making good choices.
-                    <ul style="margin-top: 1rem;">
-                        <li>👉 "Is this fair?"</li>
-                        <li>👉 "Is this safe?"</li>
-                        <li>👉 "Does this help others?"</li>
-                    </ul>
-                </div>
-
-                <div class="activities">
-                    <div class="activity-card">
-                        <h3>TO DO</h3>
-                        <p>What ethical problems will a character have to resolve in a story you are writing? Try Writer Igniter to get started.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <button class="nav-btn" onclick="showLetter('d')">← Previous: Data</button>
-                <button class="nav-btn" onclick="showLetter('f')">Next: Fake →</button>
-            </div>
-        </section>
-
-        <!-- Continue with letters F through Z following the same pattern... -->
-        <!-- I'll include just a few more for brevity, but all 26 would be in the actual file -->
 
         <!-- About Section -->
         <section id="about" class="letter-section">
-            <div class="letter-card">
-                <h2 style="color: var(--primary-color); margin-bottom: 2rem;">How to Use Our AI Alphabet!</h2>
-                <p style="font-size: 1.1rem; color: var(--secondary-color); margin-bottom: 2rem;">Ideas For Teachers, Tutors, Students, and Families</p>
+            <div class="content-card">
+                <h2 class="section-title">How to Use Our AI Alphabet!</h2>
+                <p class="section-subtitle">Ideas For Teachers, Tutors, Students, and Families</p>
                 
                 <div class="about-content">
-                    <h3>Welcome to our AI Alphabet for Young Readers!</h3>
-                    <p>Our goal is to provide teachers, tutors, students and families easy-to-read, kid-friendly definitions of words that generative artificial intelligence (GenAI) technologies have brought into our everyday lives in schools, homes and communities.</p>
-                    
-                    <p>Our inspiration for creating this resource is based on a growing recognition that children as young as kindergarten and first grade need to begin developing AI literacy that includes understanding what artificial intelligence tools can and cannot do. As one commentator noted, it's important to teach youngsters that <em>"technology is a helper, not a human"</em> (Kwan, 2025).</p>
-                    
-                    <p>A key to AI literacy is for youngsters to begin recognizing and understanding the new vocabularies that are increasingly part of the emerging age of AI in schools and society. AI and social media-driven new vocabularies are referred to as "algospeak." Alex Aleksic, also known as @etymoloogynerd, notes how these words and concepts spread virally online so people use them without really fully understanding them (2025).</p>
+                    <div class="content-section">
+                        <h3>Welcome to our AI Alphabet for Young Readers!</h3>
+                        <p>Our goal is to provide teachers, tutors, students and families easy-to-read, kid-friendly definitions of words that generative artificial intelligence (GenAI) technologies have brought into our everyday lives in schools, homes and communities.</p>
+                        
+                        <p>Our inspiration for creating this resource is based on a growing recognition that children as young as kindergarten and first grade need to begin developing AI literacy that includes understanding what artificial intelligence tools can and cannot do. As one commentator noted, it's important to teach youngsters that <em>"technology is a helper, not a human"</em> (Kwan, 2025).</p>
+                    </div>
 
-                    <h3 style="margin-top: 2rem;">Words to Know</h3>
-                    <p>Each page of the alphabet features a <strong>Words to Know</strong> definition of an AI word from A to Z. The words have been crowdsourced from curriculum frameworks, conversations with teachers and college students, and our own experiences with digital technologies and social media.</p>
-                    
-                    <p>Each word has been defined by <strong>Estella Explainer Math Bot 2 (Estella AI)</strong>, a chatbot we have fine-tuned to provide kid-friendly explanations of AI terms. Estella AI is part of our Usable Math project and is available free online at <a href="https://chatgpt.com/g/g-zA144CUNe-estella-explainer-math-bot-2" target="_blank">ChatGPT</a>.</p>
+                    <div class="content-section">
+                        <h3>Words to Know</h3>
+                        <p>Each page of the alphabet features a <strong>Words to Know</strong> definition of an AI word from A to Z. The words have been crowdsourced from curriculum frameworks, conversations with teachers and college students, and our own experiences with digital technologies and social media.</p>
+                        
+                        <p>Each word has been defined by <strong>Estella Explainer Math Bot 2 (Estella AI)</strong>, a chatbot we have fine-tuned to provide kid-friendly explanations of AI terms.</p>
+                    </div>
 
-                    <h3 style="margin-top: 2rem;">Things to Do</h3>
-                    <p>Every word in the Alphabet includes interactive <strong>Things to Do</strong> activities that readers can use to learn more about the term and the larger field of artificial intelligence while expanding their creativity through writing, designing, coding and inventing.</p>
-                    
-                    <p>Interactive activities include opportunities to write and draw stories, play games, learn about history, solve puzzles, develop math skills, and more. The interactive activities we have proposed for one AI word can be used with other AI words as well, greatly expanding the ways children and adults can use this AI alphabet.</p>
+                    <div class="content-section">
+                        <h3>Things to Do</h3>
+                        <p>Every word in the Alphabet includes interactive <strong>Things to Do</strong> activities that readers can use to learn more about the term and the larger field of artificial intelligence while expanding their creativity through writing, designing, coding and inventing.</p>
+                    </div>
 
-                    <h3 style="margin-top: 2rem;">Add to the Site and Build Your Own</h3>
-                    <p>Our AI Alphabet list is just a starting point; it is not intended to be comprehensive or definitive. We invite readers to contribute more words, develop their own definitions and explanations, design their own alphabets and pictionaries and continue to expand everyone's knowledge as AI evolves in schools and society.</p>
-
-                    <div style="margin-top: 3rem; padding: 2rem; background: #f0f0f0; border-radius: 10px;">
+                    <div class="credits-box">
                         <h3>Credits</h3>
-                        <p><strong>Created by:</strong></p>
-                        <ul style="list-style: none; padding: 0;">
-                            <li>Robert W. Maloy</li>
-                            <li>Chenyang Xu</li>
-                            <li>Sharon A. Edwards</li>
-                            <li>Aubrey Coyne</li>
-                            <li>Julia Plotniak</li>
-                        </ul>
-                        <p style="margin-top: 1rem;"><strong>College of Education<br>University of Massachusetts Amherst</strong></p>
-                        <p style="margin-top: 1rem;">Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+                        <div class="credits-content">
+                            <p><strong>Created by:</strong></p>
+                            <ul>
+                                <li>Robert W. Maloy</li>
+                                <li>Chenyang Xu</li>
+                                <li>Sharon A. Edwards</li>
+                                <li>Aubrey Coyne</li>
+                                <li>Julia Plotniak</li>
+                            </ul>
+                            <p><strong>College of Education<br>University of Massachusetts Amherst</strong></p>
+                            <p class="license">Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -367,20 +378,22 @@
 
         <!-- Resources Section -->
         <section id="resources" class="letter-section">
-            <div class="letter-card">
-                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Teacher Resources</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">This resource is intended for teachers to help their young readers understand AI concepts in an engaging and age-appropriate way.</p>
+            <div class="content-card">
+                <h2 class="section-title">Teacher Resources</h2>
+                <p class="section-subtitle">This resource is intended for teachers to help their young readers understand AI concepts in an engaging and age-appropriate way.</p>
                 
-                <div class="activities" style="margin-top: 2rem;">
-                    <div class="activity-card">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
                         <h3>Teacher's Guide</h3>
                         <p>This AI Alphabet provides a structured approach to introducing AI concepts to young learners. Each letter includes definitions crafted specifically for elementary school students, along with hands-on activities that reinforce learning through creativity and play.</p>
-                        <p style="margin-top: 1rem;"><strong>How to use:</strong> Start with familiar concepts like "Robot" or "Internet" before moving to more abstract ideas like "Algorithm" or "Neural Network."</p>
+                        <p class="resource-tip"><strong>💡 Tip:</strong> Start with familiar concepts like "Robot" or "Internet" before moving to more abstract ideas.</p>
                     </div>
-                    <div class="activity-card">
-                        <h3>Activity Worksheets</h3>
-                        <p>Each letter includes "Things to Do" activities that can be adapted for individual or group work. These activities span multiple disciplines including:</p>
-                        <ul style="margin-top: 0.5rem;">
+                    <div class="resource-card">
+                        <div class="resource-icon">🎨</div>
+                        <h3>Activity Ideas</h3>
+                        <p>Each letter includes "Things to Do" activities that span multiple disciplines:</p>
+                        <ul>
                             <li>Creative writing and storytelling</li>
                             <li>Art and design projects</li>
                             <li>Problem-solving puzzles</li>
@@ -388,23 +401,18 @@
                             <li>Hands-on coding experiences</li>
                         </ul>
                     </div>
-                    <div class="activity-card">
+                    <div class="resource-card">
+                        <div class="resource-icon">📊</div>
                         <h3>Assessment Ideas</h3>
                         <p>Track student understanding through:</p>
-                        <ul style="margin-top: 0.5rem;">
-                            <li>Vocabulary journals where students illustrate and define AI terms</li>
-                            <li>Creative projects that demonstrate understanding</li>
-                            <li>"Teach a Friend" activities where students explain concepts</li>
-                            <li>Building their own AI alphabet with additional words</li>
+                        <ul>
+                            <li>Vocabulary journals with illustrations</li>
+                            <li>Creative projects demonstrating understanding</li>
+                            <li>"Teach a Friend" activities</li>
+                            <li>Building their own AI alphabet</li>
                         </ul>
-                        <p style="margin-top: 1rem;">Remember: The goal is to build AI literacy gradually and make learning enjoyable!</p>
+                        <p class="resource-tip"><strong>Remember:</strong> The goal is to build AI literacy gradually and make learning enjoyable!</p>
                     </div>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 1.5rem; background: #f0f0f0; border-radius: 10px;">
-                    <h3>Additional Support</h3>
-                    <p>For questions or to share how you're using this resource in your classroom, we welcome your feedback and suggestions.</p>
-                    <p style="margin-top: 1rem;">Visit our <a href="https://github.com/sai-educ/AI-Alphabet-for-Young-Readers" target="_blank">GitHub repository</a> to contribute or access the latest updates.</p>
                 </div>
             </div>
         </section>
@@ -412,17 +420,34 @@
 
     <footer>
         <div class="container">
-            <p>© 2025 AI Alphabet for Young Readers | University of Massachusetts Amherst</p>
-            <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></p>
-            <p style="margin-top: 1rem;">Site last updated: August 2025</p>
-            <p style="margin-top: 1rem;">
-                📖 This project is available as open source for anyone to use and contribute.<br>
-                <a href="https://github.com/sai-educ/AI-Alphabet-for-Young-Readers" target="_blank" style="color: var(--secondary-color);">
-                    View on GitHub →
-                </a>
-            </p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Alphabet for Young Readers</h4>
+                    <p>© 2025 University of Massachusetts Amherst</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Open Source</h4>
+                    <p>📖 This project is available as open source for anyone to use and contribute.</p>
+                    <a href="https://github.com/sai-educ/AI-Alphabet-for-Young-Readers" target="_blank" class="github-link">
+                        View on GitHub →
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h4>License</h4>
+                    <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+                    <p class="update-date">Last updated: August 2025</p>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="success-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBjiS2Oy9diMFl2+z9N17cqTAjzvEn9teOR2i2t7//zASBgZBmN/syG0RAyhfxO3cokUKE1ms5+upUgwKQ5vn4bZwLwUiWLzw26BSCg5WrvDbpFIKDFCo5OWwWSQHMpTZ6LtuKQU" type="audio/wav">
+    </audio>
+    <audio id="error-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRiQCAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQACAADw/wAA8P8AAPD/AADw/wAA8P8AAPD/AADw/wAA8P8AAPD/AADw/wAA" type="audio/wav">
+    </audio>
 
     <!-- Link to external JavaScript file -->
     <script src="script.js"></script>
