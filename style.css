@@ -1,17 +1,17 @@
 :root {
-    --primary-color: #5E72E4;
-    --secondary-color: #2DCE89;
-    --accent-color: #F5365C;
-    --warning-color: #FB6340;
-    --info-color: #11CDEF;
-    --dark-color: #172B4D;
-    --light-color: #F7FAFC;
-    --text-primary: #32325D;
-    --text-secondary: #525F7F;
-    --text-light: #8898AA;
-    --bg-gradient: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-    --card-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
-    --hover-shadow: 0 20px 40px rgba(50,50,93,.15), 0 10px 20px rgba(0,0,0,.1);
+    --primary-color: #4A90E2;      /* A friendly, modern blue */
+    --secondary-color: #50E3C2;    /* A vibrant, fresh mint green */
+    --accent-color: #F5A623;       /* A warm, cheerful orange */
+    --warning-color: #F8E71C;      /* A bright, happy yellow */
+    --info-color: #7ED321;         /* A lively, positive green */
+    --dark-color: #4A4A4A;         /* A softer, dark gray for text */
+    --light-color: #F9F9F9;        /* A clean, light off-white */
+    --text-primary: #333333;       /* Primary text color */
+    --text-secondary: #555555;     /* Lighter text for descriptions */
+    --text-light: #888888;         /* Subtle text color */
+    --bg-gradient: linear-gradient(135deg, #FDFBFB 0%, #EBEDEE 100%); /* Light, airy background */
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -27,7 +27,7 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
+    background: var(--bg-gradient);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -80,7 +80,7 @@ body {
 .shape-4 {
     width: 250px;
     height: 250px;
-    background: var(--warning-color);
+    background: var(--accent-color);
     top: 30%;
     right: 30%;
     animation-delay: 15s;
@@ -182,7 +182,7 @@ nav ul {
 }
 
 .nav-link.highlight {
-    background: linear-gradient(135deg, var(--warning-color), var(--accent-color));
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
     color: white;
 }
 
@@ -290,13 +290,13 @@ nav ul {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), #8B5CF6);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(94, 114, 228, 0.3);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
 }
 
 .btn-secondary {
@@ -488,7 +488,7 @@ button:hover .btn-arrow {
 .answer-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.1);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .check-btn, .next-btn {
@@ -508,7 +508,7 @@ button:hover .btn-arrow {
 }
 
 .check-btn:hover {
-    background: #4C63D2;
+    background: #357ABD;
 }
 
 .next-btn {
@@ -517,7 +517,7 @@ button:hover .btn-arrow {
 }
 
 .next-btn:hover {
-    background: #26B075;
+    background: #48C6A9;
 }
 
 .result-icon {
@@ -834,8 +834,8 @@ button:hover .btn-arrow {
 }
 
 .nav-btn-primary:hover {
-    background: #4C63D2;
-    border-color: #4C63D2;
+    background: #357ABD;
+    border-color: #357ABD;
 }
 
 /* About & Resources Content */
@@ -959,7 +959,7 @@ footer {
 }
 
 .github-link:hover {
-    color: #26B075;
+    color: #48C6A9;
     transform: translateX(5px);
 }
 
