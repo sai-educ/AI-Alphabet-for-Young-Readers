@@ -3,6 +3,9 @@
 
 A playful A–Z of AI with kid‑friendly definitions and 1‑minute activities.  
 
+### Go here for live app: 
+https://aialphabet.usablemath.org/ 
+
 ---
 
 ## Attribution
