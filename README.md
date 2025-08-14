@@ -42,23 +42,24 @@ License: **CC BY‑NC‑SA 4.0** — share and adapt for non‑commercial educat
 
 
 ### Data
-All A–Z data (letter, word, definition, activity) lives in **`script.js`** as `AI_ALPHABET`.  
+All A–Z data (letter, word, definition, activity) lives in **`data.js`** as `AI_ALPHABET`.  
 Edit in one place and both `learn.html` and `alphabet.html` reflect changes.
 
 ### How the pages work
 
-- `learn.html` finds `.alphabet-grid` and **auto‑renders** the 26 tiles on `DOMContentLoaded`.
+- `learn.html` finds `.alphabet-grid` and auto‑renders the 26 tiles on `DOMContentLoaded`.
 - Clicking a tile navigates to `alphabet.html?letter=Q`.
 - `alphabet.html` reads the `?letter` parameter and displays the detail card, with **Previous/Next** navigation and a progress bar.
 
 ### Reporting Issues
 
-1. Please use Github's Issues to report issues and bugs.
+- Please use Github's Issues to report issues and bugs. 
 
 ---
 
 ## Roadmap
 
 - Simple progress badges for learners (localStorage)
-- Add quiz mini‑games in Quiz section (match, drag‑and‑drop)
-- Illustrations for each letter 
+- Add quiz mini‑games in Quiz section, per alphabet (match, drag‑and‑drop)
+- Illustrations for each letter
+- iPad friendly and mobile responsiveness (work in progress)
