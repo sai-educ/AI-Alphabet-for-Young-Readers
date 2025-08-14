@@ -48,8 +48,7 @@ Edit in one place and both `learn.html` and `alphabet.html` reflect changes.
 
 ### Reporting Issues
 
-1. **Grid doesn’t show on Learn page**  
-   - Please use Github's Issues to report issues and bugs.
+1. Please use Github's Issues to report issues and bugs.
 
 ---
 
