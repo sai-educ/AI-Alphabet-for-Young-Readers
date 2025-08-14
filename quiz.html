@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,52 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Page-local styles for flip card + confetti */
+    .flash-wrap{max-width:820px; margin:0 auto;}
+    .flash-controls{display:flex; gap:.5rem; justify-content:space-between; margin:.75rem 0 1rem}
+    .flash-card{
+      position:relative; perspective:1200px; height:340px; border-radius:22px;
+    }
+    .flash-inner{
+      position:absolute; inset:0; border-radius:22px; background:var(--layer);
+      box-shadow:var(--shadow); transform-style:preserve-3d; transition:transform .6s ease;
+    }
+    .flash-card.flipped .flash-inner{ transform:rotateY(180deg); }
+    .face{
+      position:absolute; inset:0; backface-visibility:hidden; display:grid; place-items:center;
+      padding:1.2rem; border-radius:22px;
+    }
+    .face.front{ background:linear-gradient(135deg,#eef2ff,#fff); }
+    .face.back{ transform:rotateY(180deg); background:#fff; }
+    .q{
+      font-family:Nunito, Inter, system-ui, sans-serif; text-align:center;
+      font-weight:900; letter-spacing:.3px; font-size:1.7rem; line-height:1.2; max-width:24ch;
+    }
+    .a{
+      font-size:1.3rem; line-height:1.4; text-align:center; max-width:32ch; font-weight:700;
+    }
+    .answer-row{display:flex; gap:.5rem; align-items:center; justify-content:center; margin-top:1rem}
+    .answer-input{
+      font:inherit; padding:.7rem .9rem; border-radius:12px; border:2px solid #d7def5; width:min(420px,80%);
+    }
+    .answer-input:focus{outline:3px solid #2b2bff; outline-offset:2px}
+    .meta-hint{color:var(--muted); font-weight:600; font-size:.95rem; text-align:center; margin-top:.25rem}
+
+    .confetti{position:absolute; pointer-events:none; inset:0; overflow:hidden}
+    .piece{
+      position:absolute; top:50%; left:50%; width:10px; height:10px; border-radius:2px; opacity:.95;
+      transform:translate(-50%,-50%);
+      animation:fall 1s ease-out forwards;
+    }
+    @keyframes fall{
+      to{ transform:translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity:0; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header" role="banner">
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
@@ -29,37 +71,41 @@
 
   <main id="main" class="wrap">
     <header class="page-head">
-      <h1>Flashcard Quiz</h1>
-      <p class="muted">Tap the card to flip. Front shows a word or question, back shows the meaning or answer.<br><span class="sm-muted">Sound plays on flip and when you mark “I knew it!”</span></p>
+      <h1>Flashcards</h1>
+      <p class="muted">Type what each letter stands for. Press <strong>Enter</strong> or click <em>Check</em>.</p>
     </header>
 
-    <section class="flash-wrap">
-      <div class="deck-meta" id="deckMeta">Card 1 of 26</div>
-
-      <div class="scene">
-        <article class="card3d" id="flashCard" aria-live="polite">
-          <div class="face front" id="faceFront">
-            <div class="tag" id="tagFront">Word</div>
-            <h2 id="frontTitle">A — ALGORITHM</h2>
-            <p id="frontPrompt">What does “ALGORITHM” mean?</p>
-          </div>
-          <div class="face back" id="faceBack">
-            <div class="tag">Meaning</div>
-            <h2 id="backTitle">ALGORITHM</h2>
-            <p id="backText">A list of steps a computer follows to solve a problem.</p>
-            <p id="backExtra" class="sm-muted">Try it: Make a sandwich plan—write each step on paper!</p>
-          </div>
-        </article>
-      </div>
-
+    <div class="flash-wrap">
       <div class="flash-controls">
-        <button class="btn pill" id="prevCard">← Previous</button>
-        <button class="btn pill btn-primary" id="flipCard">Flip</button>
-        <button class="btn pill btn-green" id="knewIt">I knew it ✓</button>
-        <button class="btn pill" id="nextCard">Next →</button>
-        <button class="btn pill" id="shuffle">Shuffle</button>
+        <div style="display:flex; gap:.5rem">
+          <button id="prev" class="btn pill" type="button">← Previous</button>
+          <button id="shuffle" class="btn pill" type="button">Shuffle</button>
+        </div>
+        <div style="display:flex; gap:.5rem">
+          <button id="flip" class="btn pill" type="button">Flip</button>
+          <button id="next" class="btn pill btn-green" type="button">Next →</button>
+        </div>
       </div>
-    </section>
+
+      <section class="flash-card" aria-live="polite">
+        <div class="flash-inner">
+          <div class="face front">
+            <div>
+              <div class="q" id="qText">What is A for?</div>
+              <div class="answer-row">
+                <input id="answer" class="answer-input" type="text" placeholder="Type the word…" autocomplete="off" />
+                <button id="check" class="btn pill" type="button">Check</button>
+              </div>
+              <p class="meta-hint">Hint: use CAPITALS or lowercase — both are fine.</p>
+            </div>
+          </div>
+          <div class="face back">
+            <div class="a" id="aText">ALGORITHM</div>
+          </div>
+        </div>
+        <div class="confetti" id="confetti" aria-hidden="true"></div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -68,6 +114,107 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script>
+    // Small menu toggle
+    (function(){
+      const t = document.querySelector('.nav-toggle');
+      const m = document.getElementById('nav-menu');
+      if (t && m) t.addEventListener('click', () => {
+        const open = m.classList.toggle('show');
+        t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    // Data
+    const LETTERS = [
+      ["A","ALGORITHM"],["B","BOT"],["C","CODE"],["D","DATA"],["E","ETHICS"],
+      ["F","FAKE"],["G","GLITCH"],["H","HALLUCINATION"],["I","INTERNET"],
+      ["J","JUDGEMENT"],["K","KEYWORD"],["L","LITERACY"],["M","MACHINE LEARNING"],
+      ["N","NEURAL NETWORK"],["O","OBJECT SPOTTER"],["P","PROMPT"],["Q","QUERY"],
+      ["R","ROBOT"],["S","SIRI"],["T","TURING TEST"],["U","UNPLUG"],
+      ["V","VOICE RECOGNITION"],["W","WI‑FI"],["X","eXPLORATION"],["Y","YOU"],
+      ["Z","ZEROES & ONES"]
+    ];
+
+    // State
+    let idx = 0;
+    const qText = document.getElementById('qText');
+    const aText = document.getElementById('aText');
+    const card  = document.querySelector('.flash-card');
+    const input = document.getElementById('answer');
+    const conf  = document.getElementById('confetti');
+
+    function render(){
+      const [L, W] = LETTERS[idx];
+      qText.textContent = `What is ${L} for?`;
+      aText.textContent = W;
+      input.value = '';
+      card.classList.remove('flipped');
+      input.focus();
+    }
+
+    function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
+
+    // Sounds (Web Audio, tiny & embedded)
+    let AC;
+    function ctx(){ if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); return AC; }
+    function beep(freq=660, dur=0.12, type='sine', vol=0.04){
+      const a = ctx();
+      const o = a.createOscillator(); const g = a.createGain();
+      o.type = type; o.frequency.value = freq;
+      g.gain.value = vol; o.connect(g); g.connect(a.destination);
+      o.start(); g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + dur); o.stop(a.currentTime + dur);
+    }
+    function successChime(){ beep(740,0.12,'sine',0.05); setTimeout(()=>beep(988,0.13,'sine',0.05),120); }
+    function errorBuzz(){ beep(180,0.14,'square',0.05); setTimeout(()=>beep(140,0.14,'square',0.04),120); }
+    function flipSound(){ beep(520,0.06,'triangle',0.03); }
+
+    // Confetti (lightweight DOM pieces)
+    function burst(){
+      conf.innerHTML = '';
+      const colors = ['#6c63ff','#ff6ec7','#18a558','#ffb703','#00bcd4','#f04a5b'];
+      for (let i=0;i<36;i++){
+        const p = document.createElement('div');
+        p.className = 'piece';
+        p.style.background = colors[i % colors.length];
+        p.style.setProperty('--dx', (Math.random()*400-200)+'px');
+        p.style.setProperty('--dy', (Math.random()*-420-120)+'px');
+        p.style.setProperty('--rot', (Math.random()*720-360)+'deg');
+        conf.appendChild(p);
+      }
+      setTimeout(()=> conf.innerHTML = '', 1200);
+    }
+
+    // Controls
+    document.getElementById('flip').addEventListener('click', () => {
+      card.classList.toggle('flipped'); flipSound();
+    });
+    document.getElementById('next').addEventListener('click', () => { idx = clamp(idx+1,0,LETTERS.length-1); render(); });
+    document.getElementById('prev').addEventListener('click', () => { idx = clamp(idx-1,0,LETTERS.length-1); render(); });
+    document.getElementById('shuffle').addEventListener('click', () => {
+      LETTERS.sort(()=>Math.random()-0.5); idx = 0; render();
+    });
+    document.getElementById('check').addEventListener('click', check);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+
+    function normalize(s){
+      return s.trim().toUpperCase().replace(/\s+/g,' ');
+    }
+
+    function check(){
+      const ans = normalize(input.value);
+      const correct = normalize(LETTERS[idx][1]);
+      if (ans === correct){
+        successChime(); burst();
+        setTimeout(() => { idx = clamp(idx+1,0,LETTERS.length-1); render(); }, 350);
+      } else {
+        errorBuzz();
+        card.classList.add('flipped'); // show answer
+      }
+    }
+
+    // Init
+    render();
+  </script>
 </body>
 </html>
