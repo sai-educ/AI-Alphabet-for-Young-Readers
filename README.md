@@ -2,7 +2,6 @@
 # AI Alphabet for Young Readers
 
 A playful A–Z of AI with kid‑friendly definitions and 1‑minute activities.  
-**Live pages:** `index.html`, `learn.html`, `alphabet.html`, `about.html`, `quiz.html`
 
 ---
 
