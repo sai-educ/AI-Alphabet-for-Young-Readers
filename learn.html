@@ -14,9 +14,13 @@
 
   <header class="site-header" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
+      <a class="brand" href="index.html">
+        <span class="brand-badge" aria-hidden="true">AI</span>
+        <span class="brand-text">AI Alphabet</span>
+      </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-        <span class="sr-only">Toggle menu</span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="sr-only">Toggle menu</span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
       <ul id="nav-menu" class="nav-menu">
         <li><a href="index.html">Home</a></li>
@@ -34,7 +38,7 @@
     </header>
 
     <section class="alphabet-grid" aria-label="Alphabet grid">
-      <!-- Tiles will be injected -->
+      <!-- Tiles will be injected here -->
     </section>
   </main>
 
@@ -44,42 +48,46 @@
     </div>
   </footer>
 
-  <!-- One source of truth for words/definitions/try-it/remember/images -->
+  <!-- Load the data first -->
   <script src="data.js"></script>
 
   <script>
-    // Minimal mobile menu
-    (function(){
-      const t = document.querySelector('.nav-toggle');
-      const m = document.getElementById('nav-menu');
-      if (t && m) t.addEventListener('click', () => {
-        const open = m.classList.toggle('show');
-        t.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+    // Mobile menu toggle
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu = document.getElementById('nav-menu');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('show');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
     })();
 
-    // Render tiles from AI_DATA
-    (function(){
+    // Render letter tiles from window.AI_DATA
+    (function () {
       const grid = document.querySelector('.alphabet-grid');
-      if (!grid || !window.AI_DATA) return;
+      const DATA = window.AI_DATA;
+      if (!grid || !DATA) return;
 
-      const letters = Object.keys(AI_DATA).sort();   // A..Z
-      const colors = [1,2,3,4,5];
+      const letters = Object.keys(DATA).sort(); // A..Z
+      const colors = [1, 2, 3, 4, 5];
 
       letters.forEach((L, i) => {
-        const W = AI_DATA[L].word;
+        const info = DATA[L] || {};
+        const word = info.word || '';
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'tile';
-        btn.dataset.color = colors[i % colors.length];
-        btn.setAttribute('aria-label', `${L} is for ${W}`);
+        btn.dataset.color = String(colors[i % colors.length]);
+        btn.setAttribute('aria-label', `${L} is for ${word}`);
         btn.innerHTML = `
           <span class="big" aria-hidden="true">${L}</span>
           <span class="label">${L}</span>
-          <span class="word">${W}</span>
+          <span class="word">${word}</span>
         `;
         btn.addEventListener('click', () => {
-          location.href = `alphabet.html?letter=${L}`;
+          window.location.href = \`alphabet.html?letter=\${L}\`;
         });
         grid.appendChild(btn);
       });
