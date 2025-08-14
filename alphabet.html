@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header" role="banner">
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
@@ -33,9 +33,7 @@
     <article class="letter-card">
       <div class="progress" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
 
-      <div id="card" class="card-body">
-        <!-- Dynamic content injected by script.js -->
-      </div>
+      <div id="card" class="card-body"><!-- injected --></div>
 
       <nav class="card-nav" aria-label="Letter navigation">
         <button id="prevBtn" class="btn pill" type="button" aria-label="Previous letter">← Previous</button>
@@ -51,9 +49,112 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
   <script>
-    window.mountLetterPage && window.mountLetterPage();
+    // Local menu toggle (kept page‑local so this file is self‑contained)
+    (function(){
+      const t = document.querySelector('.nav-toggle');
+      const m = document.getElementById('nav-menu');
+      if (t && m) t.addEventListener('click', () => {
+        const open = m.classList.toggle('show');
+        t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    // A–Z data: [Letter, Word, Definition, Activity]
+    const LETTERS = [
+      ["A","ALGORITHM","A list of steps a computer follows to solve a problem.","Make a sandwich plan: write each step on paper!"],
+      ["B","BOT","A helper program that can do simple jobs again and again.","Sort toys: make a 'bot' rule — if it’s a car, box A; if not, box B."],
+      ["C","CODE","The special instructions we give computers.","Write 3 steps to tell a friend how to brush teeth."],
+      ["D","DATA","Facts and examples a computer learns from.","Count fruit at home and make a tiny table."],
+      ["E","ETHICS","Using tech in fair, kind, and safe ways.","List 3 'kind tech' rules for home or class."],
+      ["F","FAKE","Something that looks real but isn’t.","Spot‑the‑difference: compare two photos and circle clues."],
+      ["G","GLITCH","A small mistake that makes software act funny.","Draw a comic of a silly app glitch and the fix."],
+      ["H","HALLUCINATION","When AI gives an answer that sounds right but isn’t.","Ask: 'How do we check?' Practice with a book or trusted adult."],
+      ["I","INTERNET","A huge network that lets computers talk.","Draw a map from your device to a library website."],
+      ["J","JUDGEMENT","Choosing the best action with care and fairness.","Write 2 questions to ask before posting online."],
+      ["K","KEYWORD","An important word used to search or learn.","Pick a topic and list 3 strong keywords."],
+      ["L","LITERACY","Understanding and using ideas with skill.","Teach someone one new AI word today."],
+      ["M","MACHINE LEARNING","Computers finding patterns from data to improve.","Sort shapes by color and guess the rule."],
+      ["N","NEURAL NETWORK","Layers that help computers spot patterns like faces.","Stack cups in layers and pass a 'signal' (a marble) down."],
+      ["O","OBJECT SPOTTER","A tool that finds things in pictures.","Circle every triangle you can find in a picture book."],
+      ["P","PROMPT","How we ask an AI for help.","Write a clear request with details: who, what, style."],
+      ["Q","QUERY","A question asked to a computer or database.","Turn a big question into 3 small ones."],
+      ["R","ROBOT","A machine that can sense, think, and act.","Build a paper robot and label its sensors."],
+      ["S","SIRI","A voice assistant that listens and answers.","Practice asking a polite, clear question out loud."],
+      ["T","TURING TEST","A famous idea: can a machine seem human?","Play 'guess who': human or robot answers?"],
+      ["U","UNPLUG","Taking a healthy break from screens.","Try a 10‑minute walk and notice 5 sounds."],
+      ["V","VOICE RECOGNITION","Tech that understands spoken words.","Say the same sentence in 3 ways, hear differences."],
+      ["W","WI‑FI","Wireless internet that sends signals through air.","Find places at home where Wi‑Fi is strongest."],
+      ["X","eXPLORATION","Learning by trying, testing, and noticing.","Run a tiny experiment and jot what changed."],
+      ["Y","YOU","The most important thinker and decision‑maker.","Write one way you’ll use tech kindly today."],
+      ["Z","ZEROES & ONES","The tiny 'bits' computers use to represent information.","Make a secret code using 0 = clap, 1 = snap."]
+    ];
+
+    // Page state + rendering
+    let currentIndex = 0;
+    const card = document.getElementById('card');
+    const fill = document.getElementById('progressFill');
+    const label = document.getElementById('currentLabel');
+
+    function renderCard(){
+      const [L, W, def, act] = LETTERS[currentIndex];
+      const pct = Math.round(((currentIndex+1)/LETTERS.length)*100);
+      fill.style.width = pct + '%';
+      label.textContent = L;
+
+      card.innerHTML = `
+        <div class="left" style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:2px;">
+            <div class="blob" aria-hidden="true">${L}</div>
+            <div>
+              <div class="kicker">is for</div>
+              <h2>${W}</h2>
+            </div>
+          </div>
+
+          <div class="box def">
+            <h3>Kid‑friendly meaning</h3>
+            <p>${def}</p>
+          </div>
+
+          <div class="box act">
+            <h3>Try it</h3>
+            <p>${act}</p>
+          </div>
+
+          <div class="box fact">
+            <h3>Remember</h3>
+            <p>Technology is a <strong>helper</strong>. We ask clearly, think carefully, and check kindly.</p>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="illus">
+            <p>Imagine an illustration for <strong>${W}</strong> here — add drawings, stickers, or class photos!</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('prevBtn').disabled = (currentIndex === 0);
+      document.getElementById('nextBtn').disabled = (currentIndex === LETTERS.length - 1);
+    }
+
+    function go(delta){
+      currentIndex = Math.min(LETTERS.length-1, Math.max(0, currentIndex + delta));
+      history.replaceState({}, '', `?letter=${LETTERS[currentIndex][0]}`);
+      renderCard();
+    }
+
+    // Init from ?letter=
+    (function init(){
+      const usp = new URLSearchParams(location.search);
+      const letter = (usp.get('letter') || 'A').toUpperCase();
+      const idx = LETTERS.findIndex(r => r[0] === letter);
+      currentIndex = idx >= 0 ? idx : 0;
+      renderCard();
+      document.getElementById('prevBtn').addEventListener('click', () => go(-1));
+      document.getElementById('nextBtn').addEventListener('click', () => go(1));
+    })();
   </script>
 </body>
 </html>
