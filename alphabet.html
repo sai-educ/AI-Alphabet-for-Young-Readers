@@ -33,7 +33,7 @@
     <article class="letter-card">
       <div class="progress" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
 
-      <div id="card" class="card-body"><!-- injected --></div>
+      <div id="card" class="card-body"></div>
 
       <nav class="card-nav" aria-label="Letter navigation">
         <button id="prevBtn" class="btn pill" type="button" aria-label="Previous letter">← Previous</button>
@@ -129,7 +129,7 @@
           img.style.borderRadius = "14px";
           img.onload = () => illus.replaceChildren(img);
           img.onerror = () => illus.innerHTML = '<p class="muted">Add an illustration in <code>/assets/letters/'+d.image+'</code>.</p>';
-          img.src = 'assets/letters/' + d.image;   // <-- place images here
+          img.src = 'assets/letters/' + d.image;   // place images here
         } else {
           illus.innerHTML = '<p class="muted">Add an illustration for <strong>'+d.word+'</strong> in <code>/assets/letters</code>.</p>';
         }
@@ -141,7 +141,7 @@
 
       function goto(delta){
         idx = Math.max(0, Math.min(letters.length-1, idx + delta));
-        history.replaceState({}, '', `?letter=${letters[idx]}`);
+        history.replaceState({}, '', \`?letter=\${letters[idx]}\`);
         render();
       }
 
