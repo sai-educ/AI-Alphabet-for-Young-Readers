@@ -29,19 +29,36 @@
 
   <main id="main" class="wrap">
     <header class="page-head">
-      <h1>Quiz</h1>
-      <p class="muted">A playful knowledge check is on the way.</p>
+      <h1>Flashcard Quiz</h1>
+      <p class="muted">Tap the card to flip. Front shows a word or question, back shows the meaning or answer.<br><span class="sm-muted">Sound plays on flip and when you mark “I knew it!”</span></p>
     </header>
 
-    <section class="coming-soon">
-      <div class="coming-emoji" aria-hidden="true">🧩</div>
-      <h2>Coming Soon</h2>
-      <ul class="nice-list">
-        <li>Multiple‑choice “match the word”</li>
-        <li>Drag‑and‑drop definitions</li>
-        <li>Progress badges</li>
-      </ul>
-      <a href="learn.html" class="btn btn-primary">Keep Learning</a>
+    <section class="flash-wrap">
+      <div class="deck-meta" id="deckMeta">Card 1 of 26</div>
+
+      <div class="scene">
+        <article class="card3d" id="flashCard" aria-live="polite">
+          <div class="face front" id="faceFront">
+            <div class="tag" id="tagFront">Word</div>
+            <h2 id="frontTitle">A — ALGORITHM</h2>
+            <p id="frontPrompt">What does “ALGORITHM” mean?</p>
+          </div>
+          <div class="face back" id="faceBack">
+            <div class="tag">Meaning</div>
+            <h2 id="backTitle">ALGORITHM</h2>
+            <p id="backText">A list of steps a computer follows to solve a problem.</p>
+            <p id="backExtra" class="sm-muted">Try it: Make a sandwich plan—write each step on paper!</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="flash-controls">
+        <button class="btn pill" id="prevCard">← Previous</button>
+        <button class="btn pill btn-primary" id="flipCard">Flip</button>
+        <button class="btn pill btn-green" id="knewIt">I knew it ✓</button>
+        <button class="btn pill" id="nextCard">Next →</button>
+        <button class="btn pill" id="shuffle">Shuffle</button>
+      </div>
     </section>
   </main>
 
