@@ -1,20 +1,11 @@
 
-/* Basic interactions & data ------------------------------------------------ */
+/* AI Alphabet — shared data + page bootstrap
+   ------------------------------------------------------------- */
 (function(){
   const qs = (s, el=document) => el.querySelector(s);
   const qsa = (s, el=document) => [...el.querySelectorAll(s)];
 
-  // Mobile nav
-  const toggle = qs('.nav-toggle');
-  const menu = qs('#nav-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const open = menu.classList.toggle('show');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  }
-
-  // Alphabet data (single source of truth)
+  // Single Source of Truth for A–Z
   const LETTERS = [
     ["A","ALGORITHM","A list of steps a computer follows to solve a problem.","Make a sandwich plan: write each step on paper!"],
     ["B","BOT","A helper program that can do simple jobs again and again.","Sort toys: make a 'bot' rule — if it’s a car, box A; if not, box B."],
@@ -43,15 +34,26 @@
     ["Y","YOU","The most important thinker and decision‑maker.","Write one way you’ll use tech kindly today."],
     ["Z","ZEROES & ONES","The tiny 'bits' computers use to represent information.","Make a secret code using 0 = clap, 1 = snap."]
   ];
+  window.AI_ALPHABET = LETTERS; // expose for debugging
 
-  // Expose for pages
-  window.AI_ALPHABET = LETTERS;
+  // Mobile nav toggle
+  function initNav(){
+    const toggle = qs('.nav-toggle');
+    const menu = qs('#nav-menu');
+    if (toggle && menu){
+      toggle.addEventListener('click', () => {
+        const open = menu.classList.toggle('show');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  }
 
-  /* Learn page grid -------------------------------------------------------- */
-  window.renderAlphabetGrid = function(){
-    const grid = document.querySelector('.alphabet-grid');
-    if (!grid) return;
+  // Learn page grid
+  function renderAlphabetGrid(){
+    const grid = qs('.alphabet-grid');
+    if (!grid) return false;
     const colors = [1,2,3,4,5];
+    grid.innerHTML = ''; // reset if hot navigation
     LETTERS.forEach((row, idx) => {
       const [letter, word] = [row[0], row[1]];
       const btn = document.createElement('button');
@@ -69,9 +71,11 @@
       });
       grid.appendChild(btn);
     });
-  };
+    return true;
+  }
+  window.renderAlphabetGrid = renderAlphabetGrid; // expose for manual call
 
-  /* Alphabet letter page --------------------------------------------------- */
+  // Alphabet letter page
   let currentIndex = 0;
   function renderCard(){
     const card = qs('#card');
@@ -82,7 +86,6 @@
     const pct = Math.round(((currentIndex+1)/LETTERS.length)*100);
     fill.style.width = pct + '%';
     label.textContent = L;
-
     card.innerHTML = `
       <div class="left">
         <div style="display:flex; align-items:center; gap:16px; margin-bottom:8px;">
@@ -115,7 +118,6 @@
         </div>
       </div>
     `;
-
     const prev = qs('#prevBtn');
     const next = qs('#nextBtn');
     if (prev && next){
@@ -124,25 +126,32 @@
     }
   }
 
-  window.mountLetterPage = function(){
-    // read ?letter param
+  function mountLetterPage(){
+    const cardRoot = qs('#card');
+    if (!cardRoot) return false;
     const usp = new URLSearchParams(location.search);
     const letter = (usp.get('letter') || 'A').toUpperCase();
     const idx = LETTERS.findIndex(r => r[0] === letter);
     currentIndex = idx >= 0 ? idx : 0;
     renderCard();
-
     const prev = document.getElementById('prevBtn');
     const next = document.getElementById('nextBtn');
     if (prev) prev.addEventListener('click', () => { currentIndex = Math.max(0, currentIndex-1); renderCard(); history.replaceState({}, '', `?letter=${LETTERS[currentIndex][0]}`); });
     if (next) next.addEventListener('click', () => { currentIndex = Math.min(LETTERS.length-1, currentIndex+1); renderCard(); history.replaceState({}, '', `?letter=${LETTERS[currentIndex][0]}`); });
-  };
-})
-  // Auto-mount when DOM is ready
+    return true;
+  }
+  window.mountLetterPage = mountLetterPage; // expose for manual call
+
+  // Bootstrap after DOM is ready (works with defer or normal)
   document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.alphabet-grid')) {
-      window.renderAlphabetGrid();
+    initNav();
+    // If there's an alphabet grid, render it
+    if (renderAlphabetGrid()) {
+      console.log('[AI Alphabet] Learn grid rendered.');
+    }
+    // If we're on a letter page, mount it
+    if (mountLetterPage()) {
+      console.log('[AI Alphabet] Letter page mounted.');
     }
   });
-
 })();
