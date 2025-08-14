@@ -6,6 +6,11 @@ A playful A–Z of AI with kid‑friendly definitions and 1‑minute activities.
 ### Go here for live app: 
 https://aialphabet.usablemath.org/ 
 
+### Screenshots:
+<img width="1200" height="823" alt="Landing page" src="https://github.com/user-attachments/assets/a43b897b-bb81-4928-a138-a79fa8d47b82" />
+<img width="3358" height="2302" alt="AI alphabet page" src="https://github.com/user-attachments/assets/18555060-bbbf-4164-a21b-655e64f80b6e" />
+<img width="3358" height="2302" alt="Alphabet carrd page" src="https://github.com/user-attachments/assets/46c74347-ad60-4aa0-8c2b-e8faa2219f0b" />
+
 ---
 
 ## Attribution
