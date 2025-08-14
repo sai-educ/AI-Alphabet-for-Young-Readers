@@ -44,8 +44,11 @@
     </div>
   </footer>
 
+  <!-- One source of truth for words/definitions/try-it/remember/images -->
+  <script src="data.js"></script>
+
   <script>
-    // Minimal mobile menu (kept here to stay page‑local)
+    // Minimal mobile menu
     (function(){
       const t = document.querySelector('.nav-toggle');
       const m = document.getElementById('nav-menu');
@@ -55,26 +58,20 @@
       });
     })();
 
-    // Stand‑alone A–Z data and tile renderer
+    // Render tiles from AI_DATA
     (function(){
-      const LETTERS = [
-        ["A","ALGORITHM"],["B","BOT"],["C","CODE"],["D","DATA"],["E","ETHICS"],
-        ["F","FAKE"],["G","GLITCH"],["H","HALLUCINATION"],["I","INTERNET"],
-        ["J","JUDGEMENT"],["K","KEYWORD"],["L","LITERACY"],["M","MACHINE LEARNING"],
-        ["N","NEURAL NETWORK"],["O","OBJECT SPOTTER"],["P","PROMPT"],["Q","QUERY"],
-        ["R","ROBOT"],["S","SIRI"],["T","TURING TEST"],["U","UNPLUG"],
-        ["V","VOICE RECOGNITION"],["W","WI‑FI"],["X","eXPLORATION"],["Y","YOU"],
-        ["Z","ZEROES & ONES"]
-      ];
       const grid = document.querySelector('.alphabet-grid');
-      if (!grid) return;
+      if (!grid || !window.AI_DATA) return;
 
+      const letters = Object.keys(AI_DATA).sort();   // A..Z
       const colors = [1,2,3,4,5];
-      LETTERS.forEach(([L,W], idx) => {
+
+      letters.forEach((L, i) => {
+        const W = AI_DATA[L].word;
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'tile';
-        btn.dataset.color = colors[idx % colors.length];
+        btn.dataset.color = colors[i % colors.length];
         btn.setAttribute('aria-label', `${L} is for ${W}`);
         btn.innerHTML = `
           <span class="big" aria-hidden="true">${L}</span>
