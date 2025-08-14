@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - AI Alphabet for Young Readers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AI Alphabet</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="learn.html" class="nav-link active">Learn</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quiz.html" class="nav-link">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Choose a Letter to Learn</h1>
+        <p>Click on any letter to explore AI concepts and activities</p>
+    </div>
+
+    <!-- Alphabet Grid -->
+    <div class="alphabet-container">
+        <div class="alphabet-grid">
+            <button class="alphabet-btn" data-letter="A" onclick="goToAlphabet('A')">
+                <span class="letter-circle">A</span>
+                <span class="letter-word">ALGORITHM</span>
+            </button>
+            <button class="alphabet-btn" data-letter="B" onclick="goToAlphabet('B')">
+                <span class="letter-circle">B</span>
+                <span class="letter-word">BOT</span>
+            </button>
+            <button class="alphabet-btn" data-letter="C" onclick="goToAlphabet('C')">
+                <span class="letter-circle">C</span>
+                <span class="letter-word">CODE</span>
+            </button>
+            <button class="alphabet-btn" data-letter="D" onclick="goToAlphabet('D')">
+                <span class="letter-circle">D</span>
+                <span class="letter-word">DATA</span>
+            </button>
+            <button class="alphabet-btn" data-letter="E" onclick="goToAlphabet('E')">
+                <span class="letter-circle">E</span>
+                <span class="letter-word">ETHICS</span>
+            </button>
+            <button class="alphabet-btn" data-letter="F" onclick="goToAlphabet('F')">
+                <span class="letter-circle">F</span>
+                <span class="letter-word">FAKE</span>
+            </button>
+            <button class="alphabet-btn" data-letter="G" onclick="goToAlphabet('G')">
+                <span class="letter-circle">G</span>
+                <span class="letter-word">GLITCH</span>
+            </button>
+            <button class="alphabet-btn" data-letter="H" onclick="goToAlphabet('H')">
+                <span class="letter-circle">H</span>
+                <span class="letter-word">HALLUCINATION</span>
+            </button>
+            <button class="alphabet-btn" data-letter="I" onclick="goToAlphabet('I')">
+                <span class="letter-circle">I</span>
+                <span class="letter-word">INTERNET</span>
+            </button>
+            <button class="alphabet-btn" data-letter="J" onclick="goToAlphabet('J')">
+                <span class="letter-circle">J</span>
+                <span class="letter-word">JUDGEMENT</span>
+            </button>
+            <button class="alphabet-btn" data-letter="K" onclick="goToAlphabet('K')">
+                <span class="letter-circle">K</span>
+                <span class="letter-word">KEYWORD</span>
+            </button>
+            <button class="alphabet-btn" data-letter="L" onclick="goToAlphabet('L')">
+                <span class="letter-circle">L</span>
+                <span class="letter-word">LITERACY</span>
+            </button>
+            <button class="alphabet-btn" data-letter="M" onclick="goToAlphabet('M')">
+                <span class="letter-circle">M</span>
+                <span class="letter-word">MACHINE LEARNING</span>
+            </button>
+            <button class="alphabet-btn" data-letter="N" onclick="goToAlphabet('N')">
+                <span class="letter-circle">N</span>
+                <span class="letter-word">NEURAL NETWORK</span>
+            </button>
+            <button class="alphabet-btn" data-letter="O" onclick="goToAlphabet('O')">
+                <span class="letter-circle">O</span>
+                <span class="letter-word">OBJECT SPOTTER</span>
+            </button>
+            <button class="alphabet-btn" data-letter="P" onclick="goToAlphabet('P')">
+                <span class="letter-circle">P</span>
+                <span class="letter-word">PROMPT</span>
+            </button>
+            <button class="alphabet-btn" data-letter="Q" onclick="goToAlphabet('Q')">
+                <span class="letter-circle">Q</span>
+                <span class="letter-word">QUERY</span>
+            </button>
+            <button class="alphabet-btn" data-letter="R" onclick="goToAlphabet('R')">
+                <span class="letter-circle">R</span>
+                <span class="letter-word">ROBOT</span>
+            </button>
+            <button class="alphabet-btn" data-letter="S" onclick="goToAlphabet('S')">
+                <span class="letter-circle">S</span>
+                <span class="letter-word">SIRI</span>
+            </button>
+            <button class="alphabet-btn" data-letter="T" onclick="goToAlphabet('T')">
+                <span class="letter-circle">T</span>
+                <span class="letter-word">TURING TEST</span>
+            </button>
+            <button class="alphabet-btn" data-letter="U" onclick="goToAlphabet('U')">
+                <span class="letter-circle">U</span>
+                <span class="letter-word">UNPLUG</span>
+            </button>
+            <button class="alphabet-btn" data-letter="V" onclick="goToAlphabet('V')">
+                <span class="letter-circle">V</span>
+                <span class="letter-word">VOICE RECOGNITION</span>
+            </button>
+            <button class="alphabet-btn" data-letter="W" onclick="goToAlphabet('W')">
+                <span class="letter-circle">W</span>
+                <span class="letter-word">WI-FI</span>
+            </button>
+            <button class="alphabet-btn" data-letter="X" onclick="goToAlphabet('X')">
+                <span class="letter-circle">X</span>
+                <span class="letter-word">eXPLORATION</span>
+            </button>
+            <button class="alphabet-btn" data-letter="Y" onclick="goToAlphabet('Y')">
+                <span class="letter-circle">Y</span>
+                <span class="letter-word">YOU</span>
+            </button>
+            <button class="alphabet-btn" data-letter="Z" onclick="goToAlphabet('Z')">
+                <span class="letter-circle">Z</span>
+                <span class="letter-word">ZEROES & ONES</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI Alphabet for Young Readers. Created with ❤️ for curious minds.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

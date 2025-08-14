@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn AI Alphabet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AI Alphabet</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="learn.html" class="nav-link active">Learn</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quiz.html" class="nav-link">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back to Grid Button -->
+    <div class="back-button-container">
+        <a href="learn.html" class="back-to-grid">
+            <span>←</span> Back to All Letters
+        </a>
+    </div>
+
+    <!-- Main Card Container -->
+    <div class="card-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <div id="cardContent"></div>
+
+        <div class="navigation">
+            <button class="nav-button prev-button" id="prevBtn" onclick="previousCard()">
+                <span>←</span> Previous
+            </button>
+            <div class="progress-indicator">
+                <span id="currentLetter">A</span> of 26
+            </div>
+            <button class="nav-button next-button" id="nextBtn" onclick="nextCard()">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI Alphabet for Young Readers. Created with ❤️ for curious minds.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize the alphabet card based on URL parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const letter = urlParams.get('letter') || 'A';
+            const letterIndex = letter.charCodeAt(0) - 65;
+            if (letterIndex >= 0 && letterIndex < 26) {
+                currentIndex = letterIndex;
+                updateCard();
+            }
+        });
+    </script>
+</body>
+</html>
