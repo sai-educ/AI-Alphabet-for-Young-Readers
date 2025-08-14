@@ -137,4 +137,12 @@
     if (prev) prev.addEventListener('click', () => { currentIndex = Math.max(0, currentIndex-1); renderCard(); history.replaceState({}, '', `?letter=${LETTERS[currentIndex][0]}`); });
     if (next) next.addEventListener('click', () => { currentIndex = Math.min(LETTERS.length-1, currentIndex+1); renderCard(); history.replaceState({}, '', `?letter=${LETTERS[currentIndex][0]}`); });
   };
+})
+  // Auto-mount when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.alphabet-grid')) {
+      window.renderAlphabetGrid();
+    }
+  });
+
 })();
