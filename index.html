@@ -1,287 +1,116 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <title>AI Alphabet Adventure - Learn AI the Fun Way!</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AI Alphabet for Young Readers - Words to Know and Things to Do from A to Z" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <div class="robot-mascot">🤖</div>
-                    <div class="title-group">
-                        <h1>AI Alphabet Adventure</h1>
-                        <p class="tagline">Learn AI the Fun Way!</p>
-                    </div>
-                </div>
-                <nav>
-                    <button class="nav-btn active" onclick="showSection('home')">🏠 Home</button>
-                    <button class="nav-btn" onclick="showSection('alphabet')">📚 Learn</button>
-                    <button class="nav-btn" onclick="showSection('flashcards')">🎯 Quiz</button>
-                    <button class="nav-btn" onclick="showSection('about')">ℹ️ About</button>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <section id="home">
-            <div class="welcome-banner">
-                <h2><span class="wave">👋</span> Welcome Explorers!</h2>
-                <p>Ready for an amazing adventure into the world of AI? Let's learn, play, and discover together!</p>
-            </div>
-
-            <div class="adventure-cards">
-                <div class="adventure-card" onclick="showSection('alphabet')">
-                    <div class="card-emoji">🎓</div>
-                    <h3>Learn the ABCs</h3>
-                    <p>Discover 26 core AI concepts, each explained in a simple and fun way.</p>
-                </div>
-                <div class="adventure-card" onclick="showSection('flashcards')">
-                    <div class="card-emoji">🎮</div>
-                    <h3>Play the Quiz</h3>
-                    <p>Test your knowledge with an interactive quiz and become an AI champion.</p>
-                </div>
-                <div class="adventure-card">
-                    <div class="card-emoji">🎨</div>
-                    <h3>Creative Activities</h3>
-                    <p>Engage in fun activities and bring AI concepts to life.</p>
-                </div>
-            </div>
-
-            <div class="start-journey">
-                <button class="big-start-btn" onclick="showSection('alphabet')">Start Your Journey! 🚀</button>
-            </div>
-        </section>
-
-        <section id="flashcards" class="hidden">
-            <div class="quiz-header">
-                <h2>AI Quiz Challenge!</h2>
-            </div>
-
-            <div class="score-board">
-                <div class="score-item">
-                    <div class="score-label">Score</div>
-                    <div class="score-value" id="quiz-score">0</div>
-                </div>
-                <div class="score-item">
-                    <div class="score-label">Progress</div>
-                    <div class="score-value"><span id="current-question">1</span>/26</div>
-                </div>
-                <div class="score-item">
-                    <div class="score-label">Streak</div>
-                    <div class="score-value" id="quiz-streak">0</div>
-                </div>
-            </div>
-
-            <div class="quiz-card-wrapper">
-                <div class="quiz-card" id="flashcard">
-                    <div class="card-front">
-                        <div id="card-letter">A</div>
-                        <p id="question-hint">"A set of steps a computer follows"</p>
-                        <div class="answer-box">
-                            <input type="text" id="answer-input" placeholder="What's the word?">
-                            <button class="check-answer-btn" onclick="checkAnswer()">Check Answer</button>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <div id="result-icon">🎉</div>
-                        <h3 id="result-word">Algorithm</h3>
-                        <p id="result-definition">A set of steps a computer follows to solve a problem.</p>
-                        <div id="fun-fact">⭐ Fun Fact: The word "algorithm" comes from a mathematician named Al-Khwarizmi!</div>
-                        <button class="helper-btn" onclick="nextQuestion()">Next →</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quiz-helpers">
-                <button class="helper-btn" onclick="skipQuestion()">Skip Question</button>
-                <button class="helper-btn" onclick="resetQuiz()">Reset Quiz</button>
-            </div>
-        </section>
-
-        <section id="alphabet" class="hidden">
-            <div class="alphabet-header">
-                <h2>Choose a Letter!</h2>
-                <p>Click any letter to start your learning adventure.</p>
-            </div>
-            <div class="alphabet-playground">
-                <script>
-                    const quizData = [ { letter: 'A', word: 'Algorithm' }, { letter: 'B', word: 'Bot' }, { letter: 'C', word: 'Code' }, { letter: 'D', word: 'Data' }, { letter: 'E', word: 'Ethics' }, { letter: 'F', word: 'Fake' }, { letter: 'G', word: 'Glitch' }, { letter: 'H', word: 'Hallucination' }, { letter: 'I', word: 'Internet' }, { letter: 'J', word: 'Judgement' }, { letter: 'K', word: 'Keyword' }, { letter: 'L', word: 'Literacy' }, { letter: 'M', word: 'Machine Learning' }, { letter: 'N', word: 'Neural Network' }, { letter: 'O', word: 'Object Spotter' }, { letter: 'P', word: 'Prompt' }, { letter: 'Q', word: 'Query' }, { letter: 'R', word: 'Robot' }, { letter: 'S', word: 'Siri' }, { letter: 'T', word: 'Turing Test' }, { letter: 'U', word: 'Unplug' }, { letter: 'V', word: 'Voice Recognition' }, { letter: 'W', word: 'WiFi' }, { letter: 'X', word: 'eXploration' }, { letter: 'Y', word: 'You' }, { letter: 'Z', word: 'Zeroes and Ones' } ];
-                    const playground = document.querySelector('.alphabet-playground');
-                    quizData.forEach(item => {
-                        playground.innerHTML += `
-                            <button class="abc-tile" onclick="showLetter('${item.letter.toLowerCase()}')">
-                                <div class="tile-letter">${item.letter}</div>
-                                <div class="tile-word">${item.word}</div>
-                            </button>
-                        `;
-                    });
-                </script>
-            </div>
-        </section>
-        
-        <section id="about" class="hidden">
-            <div class="about-card">
-                <h2>About Our Adventure</h2>
-                <p>This fun learning resource helps young readers understand AI concepts through engaging activities and kid-friendly explanations!</p>
-                <div class="creators-section">
-                    <h3>Created By</h3>
-                    <div class="creators-grid">
-                        <div class="creator-badge">Robert W. Maloy</div>
-                        <div class="creator-badge">Chenyang Xu</div>
-                        <div class="creator-badge">Sharon A. Edwards</div>
-                        <div class="creator-badge">Aubrey Coyne</div>
-                        <div class="creator-badge">Julia Plotniak</div>
-                    </div>
-                    <p class="university">🎓 University of Massachusetts Amherst</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 AI Alphabet Adventure</p>
-            <p>Made with ❤️ for young learners everywhere!</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        // Simple section toggling
-        function showSection(sectionId) {
-            document.querySelectorAll('main section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.nav-btn[onclick="showSection('${sectionId}')"]`).classList.add('active');
-        }
-    </script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Alphabet for Young Readers - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Alphabet for Young Readers · Home</title>
+  <meta name="description" content="A playful A–Z of AI with kid‑friendly words, simple activities, and gentle guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">AI Alphabet</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="learn.html" class="nav-link">Learn</a>
-                </li>
-                <li class="nav-item">
-                    <a href="quiz.html" class="nav-link">Quiz</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-            </ul>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="AI Alphabet home">
+        <span class="brand-badge" aria-hidden="true">AI</span>
+        <span class="brand-text">AI Alphabet</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Toggle menu</span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">AI Alphabet for Young Readers</h1>
-            <p class="hero-subtitle">Words to Know and Things to Do from A to Z</p>
-            <div class="hero-description">
-                <p>Welcome to our interactive learning platform where children can explore artificial intelligence concepts through fun, engaging activities and simple explanations.</p>
-            </div>
-            <div class="hero-buttons">
-                <a href="learn.html" class="btn btn-primary">
-                    <span class="btn-icon">📚</span>
-                    Start Learning
-                </a>
-                <a href="quiz.html" class="btn btn-secondary">
-                    <span class="btn-icon">🎯</span>
-                    Take a Quiz
-                </a>
-            </div>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Words to Know · Things to Do</p>
+          <h1 class="hero-title">AI Alphabet for Young Readers</h1>
+          <p class="hero-sub">Explore friendly explanations and playful mini‑activities from A to Z.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="learn.html" aria-label="Start learning the AI alphabet">
+              <span class="btn-emoji" aria-hidden="true">📚</span> Start Learning
+            </a>
+            <a class="btn btn-ghost" href="quiz.html" aria-label="Try the AI quiz">
+              <span class="btn-emoji" aria-hidden="true">🎯</span> Try the Quiz
+            </a>
+          </div>
+          <ul class="hero-points" role="list">
+            <li>Kid‑friendly definitions</li>
+            <li>1‑minute “try it” activities</li>
+            <li>Safe & kind tech habits</li>
+          </ul>
         </div>
-        <div class="hero-illustration">
-            <div class="floating-cards">
-                <div class="float-card card-1">A</div>
-                <div class="float-card card-2">B</div>
-                <div class="float-card card-3">C</div>
-                <div class="float-card card-4">AI</div>
-            </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="bubble bubble-a">A</div>
+          <div class="bubble bubble-b">I</div>
+          <div class="bubble bubble-c">🤖</div>
+          <div class="bubble bubble-d">🌈</div>
+          <svg class="hero-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="currentColor" fill-opacity="0.12"
+              d="M0,256L48,218.7C96,181,192,107,288,101.3C384,96,480,160,576,160C672,160,768,96,864,80C960,64,1056,96,1152,122.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
+          </svg>
         </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="wrap">
+        <h2 class="section-title">What you'll discover</h2>
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-emoji" aria-hidden="true">🔤</div>
+            <h3>26 Concepts</h3>
+            <p>From <strong>Algorithm</strong> to <strong>Zeroes & Ones</strong>, sized for young minds.</p>
+          </article>
+          <article class="card">
+            <div class="card-emoji" aria-hidden="true">🎨</div>
+            <h3>Do & Try</h3>
+            <p>Quick, screen‑light activities to make ideas stick.</p>
+          </article>
+          <article class="card">
+            <div class="card-emoji" aria-hidden="true">🧠</div>
+            <h3>Clear & Kind</h3>
+            <p>Simple words, gentle tone, and inclusive examples.</p>
+          </article>
+          <article class="card">
+            <div class="card-emoji" aria-hidden="true">🛡️</div>
+            <h3>Safe Tech</h3>
+            <p>Reminders that technology is a <em>helper</em>, not a human.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <h2>Ready to begin your AI adventure?</h2>
+        <p>Pick a letter and learn in minutes. Great for classrooms and families.</p>
+        <a class="btn btn-large btn-primary" href="learn.html">Begin Learning</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2025 AI Alphabet for Young Readers • Created with ❤️ for curious minds</p>
+      <p class="meta">By Robert W. Maloy, Sharon A. Edwards, and the UMass Amherst team</p>
     </div>
+  </footer>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2 class="section-title">What You'll Discover</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>26 AI Concepts</h3>
-                    <p>Learn essential AI terminology from Algorithm to Zeroes & Ones</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Interactive Activities</h3>
-                    <p>Hands-on projects and creative exercises for every letter</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3>Kid-Friendly Definitions</h3>
-                    <p>Simple explanations designed for young learners</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌟</div>
-                    <h3>Historical Facts</h3>
-                    <p>Discover inspiring stories and cultural connections</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Start Your AI Adventure?</h2>
-            <p>Join thousands of young learners exploring the exciting world of artificial intelligence</p>
-            <a href="learn.html" class="btn btn-large">Begin Learning Now</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 AI Alphabet for Young Readers. Created with ❤️ for curious minds.</p>
-            <p class="footer-credit">By Robert W. Maloy, Sharon A. Edwards, and team at University of Massachusetts Amherst</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

@@ -1,104 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - AI Alphabet for Young Readers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About · AI Alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">AI Alphabet</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="learn.html" class="nav-link">Learn</a>
-                </li>
-                <li class="nav-item">
-                    <a href="quiz.html" class="nav-link">Quiz</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link active">About</a>
-                </li>
-            </ul>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Toggle menu</span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- About Content -->
-    <div class="about-container">
-        <div class="about-header">
-            <h1>About AI Alphabet for Young Readers</h1>
-            <p class="about-subtitle">Empowering the next generation with AI literacy</p>
-        </div>
+  <main id="main" class="wrap">
+    <header class="page-head">
+      <h1>About AI Alphabet</h1>
+      <p class="muted">Empowering young learners with friendly AI vocabulary and tiny activities.</p>
+    </header>
 
-        <div class="about-content">
-            <div class="about-section">
-                <div class="about-card">
-                    <div class="about-icon">📚</div>
-                    <h2><strong>Words to Know</strong></h2>
-                    <p>Estella AI helps us provide kid-friendly definitions of AI words. Each term is carefully explained using simple language that young learners can understand, making complex AI concepts accessible to children as young as kindergarten.</p>
-                </div>
+    <section class="about-grid">
+      <article class="about-card">
+        <div class="card-emoji" aria-hidden="true">📚</div>
+        <h3>Words to Know</h3>
+        <p>Kid‑sized explanations written in simple, caring language.</p>
+      </article>
+      <article class="about-card">
+        <div class="card-emoji" aria-hidden="true">✏️</div>
+        <h3>Things to Do</h3>
+        <p>1‑minute “try it” tasks that work even without screens.</p>
+      </article>
+      <article class="about-card">
+        <div class="card-emoji" aria-hidden="true">🌟</div>
+        <h3>More to Learn</h3>
+        <p>Extend ideas with stories, questions, and community challenges.</p>
+      </article>
+      <article class="about-card">
+        <div class="card-emoji" aria-hidden="true">🛡️</div>
+        <h3>Kind & Safe</h3>
+        <p>We remind children that technology is a helper, not a human.</p>
+      </article>
+    </section>
 
-                <div class="about-card">
-                    <div class="about-icon">✏️</div>
-                    <h2><strong>Things to Do</strong></h2>
-                    <p>Activities you can do to explore, learn and have fun. Every letter includes hands-on projects, creative exercises, and interactive challenges that reinforce learning through play and discovery.</p>
-                </div>
+    <section class="panel">
+      <h2>Created by</h2>
+      <ul class="nice-list">
+        <li>Robert W. Maloy</li>
+        <li>Sharon A. Edwards</li>
+        <li>Chenyang Xu</li>
+        <li>Aubrey Coyne</li>
+        <li>Julia Plotniak</li>
+      </ul>
+      <p class="muted">College of Education · University of Massachusetts Amherst</p>
+    </section>
 
-                <div class="about-card">
-                    <div class="about-icon">🌟</div>
-                    <h2><strong>More to Learn</strong></h2>
-                    <p>What new words and additional activities will you write and record? We encourage young learners to expand their knowledge, create their own AI alphabets, and continue exploring this exciting field.</p>
-                </div>
-            </div>
+    <section class="panel">
+      <h2>License</h2>
+      <p class="muted">CC BY‑NC‑SA 4.0 — please share and adapt for non‑commercial education with attribution.</p>
+    </section>
+  </main>
 
-            <div class="mission-section">
-                <h2><strong>Our Mission</strong></h2>
-                <p>In an age where artificial intelligence is becoming increasingly prevalent in our daily lives, it's crucial that children develop AI literacy from an early age. Our goal is to help young learners understand that "technology is a helper, not a human" and to provide them with the vocabulary and concepts they need to navigate the digital world safely and confidently.</p>
-            </div>
-
-            <div class="team-section">
-                <h2><strong>Created By</strong></h2>
-                <div class="team-info">
-                    <p>This educational resource was developed by:</p>
-                    <ul>
-                        <li>Robert W. Maloy</li>
-                        <li>Sharon A. Edwards</li>
-                        <li>Chenyang Xu</li>
-                        <li>Aubrey Coyne</li>
-                        <li>Julia Plotniak</li>
-                    </ul>
-                    <p class="team-affiliation">College of Education<br>University of Massachusetts Amherst</p>
-                </div>
-            </div>
-
-            <div class="inspiration-section">
-                <h2><strong>Our Inspiration</strong></h2>
-                <p>This resource is based on a growing recognition that children need to begin developing AI literacy early. With tech companies offering AI tools to children under 13, it's more important than ever to teach youngsters about these technologies in an age-appropriate way.</p>
-                <p>The AI Alphabet helps children recognize and understand the new vocabularies that are increasingly part of the emerging age of AI in schools and society.</p>
-            </div>
-
-            <div class="license-section">
-                <h2><strong>License & Usage</strong></h2>
-                <p>This educational resource is licensed under CC BY NC SA 4.0. Feel free to use, adapt, and share these materials for non-commercial educational purposes.</p>
-            </div>
-        </div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2025 AI Alphabet for Young Readers</p>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 AI Alphabet for Young Readers. Created with ❤️ for curious minds.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
