@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Letter · AI Alphabet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
+      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span
+          class="brand-text">AI Alphabet</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-        <span class="sr-only">Toggle menu</span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="sr-only">Toggle menu</span><span class="bar"></span><span class="bar"></span><span
+          class="bar"></span>
       </button>
       <ul id="nav-menu" class="nav-menu">
         <li><a href="index.html">Home</a></li>
@@ -31,7 +37,9 @@
     <p class="back-line"><a class="back-link" href="learn.html">← Back to all letters</a></p>
 
     <article class="letter-card">
-      <div class="progress" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+      <div class="progress" aria-hidden="true">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
 
       <div id="card" class="card-body"></div>
 
@@ -51,10 +59,12 @@
 
   <!-- Load shared content -->
   <script src="data.js"></script>
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="chat.js" defer></script>
 
   <script>
     // Local menu toggle
-    (function(){
+    (function () {
       const t = document.querySelector('.nav-toggle');
       const m = document.getElementById('nav-menu');
       if (t && m) t.addEventListener('click', () => {
@@ -64,28 +74,28 @@
     })();
 
     // Build page from AI_DATA
-    (function(){
+    (function () {
       if (!window.AI_DATA) return;
 
       const letters = Object.keys(AI_DATA).sort();
-      const fill   = document.getElementById('progressFill');
-      const label  = document.getElementById('currentLabel');
-      const card   = document.getElementById('card');
+      const fill = document.getElementById('progressFill');
+      const label = document.getElementById('currentLabel');
+      const card = document.getElementById('card');
 
       let idx = 0;
 
-      function indexFromQuery(){
+      function indexFromQuery() {
         const L = (new URLSearchParams(location.search).get('letter') || 'A').toUpperCase();
         const i = letters.indexOf(L);
         idx = i >= 0 ? i : 0;
       }
 
-      function render(){
+      function render() {
         const L = letters[idx];
         const d = AI_DATA[L];
 
         // progress
-        fill.style.width = Math.round(((idx+1)/letters.length)*100) + '%';
+        fill.style.width = Math.round(((idx + 1) / letters.length) * 100) + '%';
         label.textContent = L;
 
         // card content
@@ -95,7 +105,10 @@
               <div class="blob" aria-hidden="true">${L}</div>
               <div>
                 <div class="kicker">is for</div>
-                <h2>${d.word}</h2>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <h2>${d.word}</h2>
+                  <button id="tts-btn" class="btn-icon" aria-label="Listen to pronunciation" title="Listen">🔊</button>
+                </div>
               </div>
             </div>
 
@@ -122,25 +135,63 @@
 
         // optional image
         const illus = document.getElementById('illus');
-        if (d.image){
+        if (d.image) {
           const img = new Image();
           img.alt = d.word + " illustration";
           img.style.maxWidth = "100%";
           img.style.borderRadius = "14px";
           img.onload = () => illus.replaceChildren(img);
-          img.onerror = () => illus.innerHTML = '<p class="muted">Add an illustration in <code>/assets/letters/'+d.image+'</code>.</p>';
+          img.onerror = () => illus.innerHTML = '<p class="muted">Add an illustration in <code>/assets/letters/' + d.image + '</code>.</p>';
           img.src = 'assets/letters/' + d.image;   // place images here
         } else {
-          illus.innerHTML = '<p class="muted">Add an illustration for <strong>'+d.word+'</strong> in <code>/assets/letters</code>.</p>';
+          illus.innerHTML = '<p class="muted">Add an illustration for <strong>' + d.word + '</strong> in <code>/assets/letters</code>.</p>';
         }
 
         // nav state
         document.getElementById('prevBtn').disabled = (idx === 0);
         document.getElementById('nextBtn').disabled = (idx === letters.length - 1);
+
+        // TTS Handler
+        const ttsBtn = document.getElementById('tts-btn');
+        if (ttsBtn) {
+          ttsBtn.addEventListener('click', async () => {
+            if (ttsBtn.disabled) return;
+            ttsBtn.disabled = true;
+            ttsBtn.style.opacity = '0.6';
+
+            try {
+              // Using ElevenLabs via Puter.js as requested
+              const audio = await puter.ai.txt2speech(
+                `${d.word}.`,
+                {
+                  provider: "elevenlabs",
+                  model: "eleven_multilingual_v2",
+                  voice: "21m00Tcm4TlvDq8ikWAM",
+                  output_format: "mp3_44100_128"
+                }
+              );
+              audio.play();
+              audio.onended = () => {
+                ttsBtn.disabled = false;
+                ttsBtn.style.opacity = '1';
+              };
+              // Fallback if onended doesn't fire (some browsers/audio objects)
+              setTimeout(() => {
+                ttsBtn.disabled = false;
+                ttsBtn.style.opacity = '1';
+              }, 3000);
+            } catch (err) {
+              console.error("TTS Error:", err);
+              ttsBtn.disabled = false;
+              ttsBtn.style.opacity = '1';
+              alert("Oops! Couldn't play the sound right now.");
+            }
+          });
+        }
       }
 
-      function goto(delta){
-        idx = Math.max(0, Math.min(letters.length-1, idx + delta));
+      function goto(delta) {
+        idx = Math.max(0, Math.min(letters.length - 1, idx + delta));
         history.replaceState({}, '', `?letter=${letters[idx]}`);
         render();
       }
@@ -154,4 +205,5 @@
     })();
   </script>
 </body>
+
 </html>
