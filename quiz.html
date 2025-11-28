@@ -1,65 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quiz · AI Alphabet</title>
+  <title>Quiz & Certificate · AI Alphabet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Page-local styles for flip card + confetti */
-    .flash-wrap{max-width:820px; margin:0 auto;}
-    .flash-controls{display:flex; gap:.5rem; justify-content:space-between; margin:.75rem 0 1rem}
-    .flash-card{
-      position:relative; perspective:1200px; height:340px; border-radius:22px;
+    .quiz-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .flash-inner{
-      position:absolute; inset:0; border-radius:22px; background:var(--layer);
-      box-shadow:var(--shadow); transform-style:preserve-3d; transition:transform .6s ease;
-    }
-    .flash-card.flipped .flash-inner{ transform:rotateY(180deg); }
-    .face{
-      position:absolute; inset:0; backface-visibility:hidden; display:grid; place-items:center;
-      padding:1.2rem; border-radius:22px;
-    }
-    .face.front{ background:linear-gradient(135deg,#eef2ff,#fff); }
-    .face.back{ transform:rotateY(180deg); background:#fff; }
-    .q{
-      font-family:Nunito, Inter, system-ui, sans-serif; text-align:center;
-      font-weight:900; letter-spacing:.3px; font-size:1.7rem; line-height:1.2; max-width:24ch;
-    }
-    .a{
-      font-size:1.3rem; line-height:1.4; text-align:center; max-width:32ch; font-weight:700;
-    }
-    .answer-row{display:flex; gap:.5rem; align-items:center; justify-content:center; margin-top:1rem}
-    .answer-input{
-      font:inherit; padding:.7rem .9rem; border-radius:12px; border:2px solid #d7def5; width:min(420px,80%);
-    }
-    .answer-input:focus{outline:3px solid #2b2bff; outline-offset:2px}
-    .meta-hint{color:var(--muted); font-weight:600; font-size:.95rem; text-align:center; margin-top:.25rem}
 
-    .confetti{position:absolute; pointer-events:none; inset:0; overflow:hidden}
-    .piece{
-      position:absolute; top:50%; left:50%; width:10px; height:10px; border-radius:2px; opacity:.95;
-      transform:translate(-50%,-50%);
-      animation:fall 1s ease-out forwards;
+    .progress-bar {
+      height: 10px;
+      background: #eef2ff;
+      border-radius: 5px;
+      margin: 2rem 0;
+      overflow: hidden;
     }
-    @keyframes fall{
-      to{ transform:translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity:0; }
+
+    .progress-fill {
+      height: 100%;
+      background: #6c63ff;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .q-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .option-btn {
+      padding: 1rem;
+      border: 2px solid #eef2ff;
+      border-radius: 12px;
+      background: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      border-color: #6c63ff;
+      background: #f0f4ff;
+    }
+
+    .option-btn.selected {
+      background: #6c63ff;
+      color: #fff;
+      border-color: #6c63ff;
+    }
+
+    .input-answer {
+      font-size: 1.2rem;
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: 2px solid #d7def5;
+      width: 80%;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Certificate Styles */
+    #certificate-container {
+      display: none;
+      text-align: center;
+      animation: slideUp 0.5s ease;
+    }
+
+    .cert-preview {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin: 2rem 0;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" role="banner">
     <nav class="nav" aria-label="Primary">
-      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span class="brand-text">AI Alphabet</span></a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-        <span class="sr-only">Toggle menu</span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
+      <a class="brand" href="index.html"><span class="brand-badge" aria-hidden="true">AI</span><span
+          class="brand-text">AI Alphabet</span></a>
       <ul id="nav-menu" class="nav-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="learn.html">Learn</a></li>
@@ -70,151 +134,240 @@
   </header>
 
   <main id="main" class="wrap">
-    <header class="page-head">
-      <h1>Flashcards</h1>
-      <p class="muted">Type what each letter stands for. Press <strong>Enter</strong> or click <em>Check</em>.</p>
-    </header>
 
-    <div class="flash-wrap">
-      <div class="flash-controls">
-        <div style="display:flex; gap:.5rem">
-          <button id="prev" class="btn pill" type="button">← Previous</button>
-          <button id="shuffle" class="btn pill" type="button">Shuffle</button>
-        </div>
-        <div style="display:flex; gap:.5rem">
-          <button id="flip" class="btn pill" type="button">Flip</button>
-          <button id="next" class="btn pill btn-green" type="button">Next →</button>
+    <!-- Quiz Section -->
+    <div id="quiz-section" class="quiz-wrap">
+      <header class="page-head">
+        <h1>AI Master Quiz</h1>
+        <p class="muted">Answer 15 questions to earn your certificate!</p>
+      </header>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+      </div>
+      <p style="font-weight:700; color:var(--brand);">Question <span id="q-num">1</span> of 15</p>
+
+      <div class="question-card">
+        <div class="q-text" id="question">Loading...</div>
+        <div id="options-area"></div>
+        <div id="input-area" class="hidden">
+          <input type="text" id="text-input" class="input-answer" placeholder="Type your answer..." autocomplete="off">
+          <br>
+          <button id="submit-text" class="btn btn-primary">Submit</button>
         </div>
       </div>
-
-      <section class="flash-card" aria-live="polite">
-        <div class="flash-inner">
-          <div class="face front">
-            <div>
-              <div class="q" id="qText">What is A for?</div>
-              <div class="answer-row">
-                <input id="answer" class="answer-input" type="text" placeholder="Type the word…" autocomplete="off" />
-                <button id="check" class="btn pill" type="button">Check</button>
-              </div>
-              <p class="meta-hint">Hint: use CAPITALS or lowercase — both are fine.</p>
-            </div>
-          </div>
-          <div class="face back">
-            <div class="a" id="aText">ALGORITHM</div>
-          </div>
-        </div>
-        <div class="confetti" id="confetti" aria-hidden="true"></div>
-      </section>
+      <div id="feedback" style="height: 2rem; font-weight: 800;"></div>
     </div>
+
+    <!-- Certificate Section -->
+    <div id="certificate-section" class="quiz-wrap hidden">
+      <header class="page-head">
+        <h1>🎉 Amazing Job!</h1>
+        <p class="muted">You scored <span id="final-score"></span>/15. You are an AI Master!</p>
+      </header>
+
+      <div class="card" style="padding: 2rem;">
+        <label for="student-name" style="display:block; font-weight:700; margin-bottom:0.5rem;">Enter your name for the
+          certificate:</label>
+        <input type="text" id="student-name" class="input-answer" placeholder="Your Name"
+          style="width:100%; max-width:300px;">
+        <br>
+        <button id="gen-btn" class="btn btn-primary btn-large">Generate Certificate ✨</button>
+      </div>
+    </div>
+
+    <div id="download-section" class="quiz-wrap hidden">
+      <h2>Your Certificate</h2>
+      <canvas id="cert-canvas" width="800" height="600" style="display:none;"></canvas>
+      <img id="cert-img" class="cert-preview" alt="Your Certificate">
+      <br>
+      <a id="download-link" class="btn btn-primary btn-large" download="AI-Master-Certificate.png">Download Image ⬇️</a>
+      <br><br>
+      <button onclick="location.reload()" class="btn btn-ghost">Take Quiz Again</button>
+    </div>
+
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2025 AI Alphabet for Young Readers</p>
+      <p>Adapted from a carefully crafted <a class="footer-link"
+          href="https://docs.google.com/presentation/d/1BxJaOYBW1A5cs4-DLyNE5N7zLWx_gFYAHP5u5hQuBf0/edit?usp=sharing"
+          target="_blank" rel="noopener">Google Slides document</a>.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Small menu toggle
-    (function(){
-      const t = document.querySelector('.nav-toggle');
-      const m = document.getElementById('nav-menu');
-      if (t && m) t.addEventListener('click', () => {
-        const open = m.classList.toggle('show');
-        t.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    })();
-
-    // Data
-    const LETTERS = [
-      ["A","ALGORITHM"],["B","BOT"],["C","CODE"],["D","DATA"],["E","ETHICS"],
-      ["F","FAKE"],["G","GLITCH"],["H","HALLUCINATION"],["I","INTERNET"],
-      ["J","JUDGEMENT"],["K","KEYWORD"],["L","LITERACY"],["M","MACHINE LEARNING"],
-      ["N","NEURAL NETWORK"],["O","OBJECT SPOTTER"],["P","PROMPT"],["Q","QUERY"],
-      ["R","ROBOT"],["S","SIRI"],["T","TURING TEST"],["U","UNPLUG"],
-      ["V","VOICE RECOGNITION"],["W","WI‑FI"],["X","eXPLORATION"],["Y","YOU"],
-      ["Z","ZEROES & ONES"]
+    const QUESTIONS = [
+      { q: "What does 'A' stand for in our alphabet?", a: "ALGORITHM", type: "text" },
+      { q: "A 'Bot' is short for what word?", a: "ROBOT", type: "text" },
+      { q: "Which of these is a coding language?", options: ["Snake", "Python", "Lizard", "Turtle"], a: "Python", type: "choice" },
+      { q: "Data is used by computers to learn...", options: ["Magic Tricks", "Patterns", "Cooking", "Dancing"], a: "Patterns", type: "choice" },
+      { q: "Ethics is about knowing right from...", a: "WRONG", type: "text" },
+      { q: "A video that looks real but is made by AI is called a...", options: ["Deepfake", "Photoshop", "Glitch", "Selfie"], a: "Deepfake", type: "choice" },
+      { q: "When a game freezes or acts weird, it's called a...", a: "GLITCH", type: "text" },
+      { q: "When AI makes up a wrong answer, it is...", options: ["Dreaming", "Hallucinating", "Lying", "Joking"], a: "Hallucinating", type: "choice" },
+      { q: "The massive network connecting devices globally is the...", a: "INTERNET", type: "text" },
+      { q: "AI is good at calculation, but humans are good at...", options: ["Judgement", "Math", "Sleeping", "Charging"], a: "Judgement", type: "choice" },
+      { q: "To find something online, you type a...", options: ["Password", "Keyword", "Secret", "Code"], a: "Keyword", type: "choice" },
+      { q: "Machine Learning helps computers learn from...", options: ["Books", "Examples", "Teachers", "Videos"], a: "Examples", type: "choice" },
+      { q: "A Neural Network mimics which human organ?", a: "BRAIN", type: "text" },
+      { q: "What is the input you give to an AI called?", a: "PROMPT", type: "text" },
+      { q: "Binary code is made of Zeroes and...", a: "ONES", type: "text" }
     ];
 
-    // State
-    let idx = 0;
-    const qText = document.getElementById('qText');
-    const aText = document.getElementById('aText');
-    const card  = document.querySelector('.flash-card');
-    const input = document.getElementById('answer');
-    const conf  = document.getElementById('confetti');
+    let currentIdx = 0;
+    let score = 0;
 
-    function render(){
-      const [L, W] = LETTERS[idx];
-      qText.textContent = `What is ${L} for?`;
-      aText.textContent = W;
-      input.value = '';
-      card.classList.remove('flipped');
-      input.focus();
+    const els = {
+      quizSec: document.getElementById('quiz-section'),
+      certSec: document.getElementById('certificate-section'),
+      dlSec: document.getElementById('download-section'),
+      qText: document.getElementById('question'),
+      opts: document.getElementById('options-area'),
+      inpArea: document.getElementById('input-area'),
+      txtInp: document.getElementById('text-input'),
+      subBtn: document.getElementById('submit-text'),
+      prog: document.getElementById('progress'),
+      qNum: document.getElementById('q-num'),
+      feed: document.getElementById('feedback'),
+      finalScore: document.getElementById('final-score'),
+      nameInp: document.getElementById('student-name'),
+      genBtn: document.getElementById('gen-btn'),
+      canvas: document.getElementById('cert-canvas'),
+      img: document.getElementById('cert-img'),
+      dlLink: document.getElementById('download-link')
+    };
+
+    function init() {
+      renderQuestion();
     }
 
-    function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
+    function renderQuestion() {
+      const q = QUESTIONS[currentIdx];
+      els.qText.textContent = q.q;
+      els.qNum.textContent = currentIdx + 1;
+      els.prog.style.width = ((currentIdx) / QUESTIONS.length * 100) + '%';
+      els.feed.textContent = '';
 
-    // Sounds (Web Audio, tiny & embedded)
-    let AC;
-    function ctx(){ if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); return AC; }
-    function beep(freq=660, dur=0.12, type='sine', vol=0.04){
-      const a = ctx();
-      const o = a.createOscillator(); const g = a.createGain();
-      o.type = type; o.frequency.value = freq;
-      g.gain.value = vol; o.connect(g); g.connect(a.destination);
-      o.start(); g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + dur); o.stop(a.currentTime + dur);
-    }
-    function successChime(){ beep(740,0.12,'sine',0.05); setTimeout(()=>beep(988,0.13,'sine',0.05),120); }
-    function errorBuzz(){ beep(180,0.14,'square',0.05); setTimeout(()=>beep(140,0.14,'square',0.04),120); }
-    function flipSound(){ beep(520,0.06,'triangle',0.03); }
+      els.opts.innerHTML = '';
+      els.inpArea.classList.add('hidden');
+      els.txtInp.value = '';
 
-    // Confetti (lightweight DOM pieces)
-    function burst(){
-      conf.innerHTML = '';
-      const colors = ['#6c63ff','#ff6ec7','#18a558','#ffb703','#00bcd4','#f04a5b'];
-      for (let i=0;i<36;i++){
-        const p = document.createElement('div');
-        p.className = 'piece';
-        p.style.background = colors[i % colors.length];
-        p.style.setProperty('--dx', (Math.random()*400-200)+'px');
-        p.style.setProperty('--dy', (Math.random()*-420-120)+'px');
-        p.style.setProperty('--rot', (Math.random()*720-360)+'deg');
-        conf.appendChild(p);
-      }
-      setTimeout(()=> conf.innerHTML = '', 1200);
-    }
-
-    // Controls
-    document.getElementById('flip').addEventListener('click', () => {
-      card.classList.toggle('flipped'); flipSound();
-    });
-    document.getElementById('next').addEventListener('click', () => { idx = clamp(idx+1,0,LETTERS.length-1); render(); });
-    document.getElementById('prev').addEventListener('click', () => { idx = clamp(idx-1,0,LETTERS.length-1); render(); });
-    document.getElementById('shuffle').addEventListener('click', () => {
-      LETTERS.sort(()=>Math.random()-0.5); idx = 0; render();
-    });
-    document.getElementById('check').addEventListener('click', check);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
-
-    function normalize(s){
-      return s.trim().toUpperCase().replace(/\s+/g,' ');
-    }
-
-    function check(){
-      const ans = normalize(input.value);
-      const correct = normalize(LETTERS[idx][1]);
-      if (ans === correct){
-        successChime(); burst();
-        setTimeout(() => { idx = clamp(idx+1,0,LETTERS.length-1); render(); }, 350);
+      if (q.type === 'choice') {
+        els.opts.classList.remove('hidden');
+        q.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = opt;
+          btn.onclick = () => check(opt);
+          els.opts.appendChild(btn);
+        });
       } else {
-        errorBuzz();
-        card.classList.add('flipped'); // show answer
+        els.inpArea.classList.remove('hidden');
+        els.txtInp.focus();
       }
     }
 
-    // Init
-    render();
+    els.subBtn.onclick = () => check(els.txtInp.value);
+    els.txtInp.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(els.txtInp.value); });
+
+    function check(ans) {
+      const q = QUESTIONS[currentIdx];
+      const isCorrect = ans.trim().toUpperCase() === q.a.toUpperCase();
+
+      if (isCorrect) {
+        score++;
+        els.feed.style.color = '#18a558';
+        els.feed.textContent = 'Correct! 🎉';
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+      } else {
+        els.feed.style.color = '#f04a5b';
+        els.feed.textContent = `Oops! The answer was ${q.a}`;
+      }
+
+      setTimeout(() => {
+        currentIdx++;
+        if (currentIdx < QUESTIONS.length) {
+          renderQuestion();
+        } else {
+          finishQuiz();
+        }
+      }, 1500);
+    }
+
+    function finishQuiz() {
+      els.quizSec.classList.add('hidden');
+      els.certSec.classList.remove('hidden');
+      els.finalScore.textContent = score;
+      confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+    }
+
+    els.genBtn.onclick = () => {
+      const name = els.nameInp.value.trim() || "Young Learner";
+      generateCertificate(name);
+    };
+
+    function generateCertificate(name) {
+      const ctx = els.canvas.getContext('2d');
+      const w = els.canvas.width;
+      const h = els.canvas.height;
+
+      // Background
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, w, h);
+
+      // Border
+      ctx.lineWidth = 20;
+      ctx.strokeStyle = "#6c63ff";
+      ctx.strokeRect(10, 10, w - 20, h - 20);
+
+      // Inner Border
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "#ffb703";
+      ctx.strokeRect(30, 30, w - 60, h - 60);
+
+      // Title
+      ctx.fillStyle = "#2b2bff";
+      ctx.font = "bold 60px Nunito";
+      ctx.textAlign = "center";
+      ctx.fillText("Certificate of Achievement", w / 2, 150);
+
+      // Subtitle
+      ctx.fillStyle = "#555";
+      ctx.font = "30px Inter";
+      ctx.fillText("This certifies that", w / 2, 220);
+
+      // Name
+      ctx.fillStyle = "#000";
+      ctx.font = "bold italic 80px Nunito";
+      ctx.fillText(name, w / 2, 320);
+
+      // Description
+      ctx.fillStyle = "#555";
+      ctx.font = "30px Inter";
+      ctx.fillText("Has successfully mastered the", w / 2, 400);
+      ctx.fillText("AI Alphabet for Young Readers", w / 2, 450);
+
+      // Date & Score
+      const date = new Date().toLocaleDateString();
+      ctx.font = "20px Inter";
+      ctx.fillStyle = "#888";
+      ctx.fillText(`Awarded on ${date} • Score: ${score}/15`, w / 2, 530);
+
+      // Convert to Image
+      const dataUrl = els.canvas.toDataURL('image/png');
+      els.img.src = dataUrl;
+      els.dlLink.href = dataUrl;
+
+      els.certSec.classList.add('hidden');
+      els.dlSec.classList.remove('hidden');
+      confetti({ particleCount: 300, spread: 120, origin: { y: 0.6 } });
+    }
+
+    init();
   </script>
 </body>
+
 </html>

@@ -54,13 +54,13 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2025 AI Alphabet for Young Readers</p>
+      <p>Adapted from a carefully crafted <a class="footer-link"
+          href="https://docs.google.com/presentation/d/1BxJaOYBW1A5cs4-DLyNE5N7zLWx_gFYAHP5u5hQuBf0/edit?usp=sharing"
+          target="_blank" rel="noopener">Google Slides document</a>.</p>
     </div>
   </footer>
 
-  <!-- Load shared content -->
   <script src="data.js"></script>
-  <script src="https://js.puter.com/v2/"></script>
-  <script src="chat.js" defer></script>
 
   <script>
     // Local menu toggle
@@ -105,25 +105,27 @@
               <div class="blob" aria-hidden="true">${L}</div>
               <div>
                 <div class="kicker">is for</div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <h2>${d.word}</h2>
-                  <button id="tts-btn" class="btn-icon" aria-label="Listen to pronunciation" title="Listen">🔊</button>
-                </div>
+                <h2>${d.word}</h2>
               </div>
             </div>
 
             <div class="box def">
-              <h3>Kid‑friendly meaning</h3>
+              <h3>The Scoop</h3>
               <p>${d.definition}</p>
             </div>
 
             <div class="box act">
-              <h3>Try it</h3>
-              <p>${d.todo}</p>
+              <h3><span aria-hidden="true">🕵️</span> Spot It</h3>
+              <p>${d.spot_it}</p>
+            </div>
+
+            <div class="box act" style="background: #eef2ff; border-color: #c7d2fe;">
+              <h3><span aria-hidden="true">🛠️</span> Create It</h3>
+              <p>${d.create_it}</p>
             </div>
 
             <div class="box fact">
-              <h3>Remember</h3>
+              <h3>Power Up</h3>
               <p>${d.remember}</p>
             </div>
           </div>
@@ -149,44 +151,13 @@
 
         // nav state
         document.getElementById('prevBtn').disabled = (idx === 0);
-        document.getElementById('nextBtn').disabled = (idx === letters.length - 1);
-
-        // TTS Handler
-        const ttsBtn = document.getElementById('tts-btn');
-        if (ttsBtn) {
-          ttsBtn.addEventListener('click', async () => {
-            if (ttsBtn.disabled) return;
-            ttsBtn.disabled = true;
-            ttsBtn.style.opacity = '0.6';
-
-            try {
-              // Using ElevenLabs via Puter.js as requested
-              const audio = await puter.ai.txt2speech(
-                `${d.word}.`,
-                {
-                  provider: "elevenlabs",
-                  model: "eleven_multilingual_v2",
-                  voice: "21m00Tcm4TlvDq8ikWAM",
-                  output_format: "mp3_44100_128"
-                }
-              );
-              audio.play();
-              audio.onended = () => {
-                ttsBtn.disabled = false;
-                ttsBtn.style.opacity = '1';
-              };
-              // Fallback if onended doesn't fire (some browsers/audio objects)
-              setTimeout(() => {
-                ttsBtn.disabled = false;
-                ttsBtn.style.opacity = '1';
-              }, 3000);
-            } catch (err) {
-              console.error("TTS Error:", err);
-              ttsBtn.disabled = false;
-              ttsBtn.style.opacity = '1';
-              alert("Oops! Couldn't play the sound right now.");
-            }
-          });
+        // document.getElementById('nextBtn').disabled = (idx === letters.length - 1); 
+        // Always enable next, we handle Z in the click handler
+        document.getElementById('nextBtn').disabled = false;
+        if (idx === letters.length - 1) {
+          document.getElementById('nextBtn').innerHTML = 'Quiz <span aria-hidden="true">➡️</span>';
+        } else {
+          document.getElementById('nextBtn').innerHTML = 'Next <span aria-hidden="true">➡️</span>';
         }
       }
 
@@ -201,7 +172,35 @@
       render();
 
       document.getElementById('prevBtn').addEventListener('click', () => goto(-1));
-      document.getElementById('nextBtn').addEventListener('click', () => goto(1));
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (idx === letters.length - 1) {
+          // If on Z, ask to go to quiz
+          if (confirm("You've finished the alphabet! Ready to test your skills in the Quiz?")) {
+            window.location.href = 'quiz.html';
+          }
+        } else {
+          goto(1);
+        }
+      });
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Confetti logic
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const letter = (params.get('letter') || 'A').toUpperCase();
+
+      if (letter === 'Z') {
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#6c63ff', '#ff6ec7', '#18a558', '#ffb703']
+          });
+        }, 500);
+      }
     })();
   </script>
 </body>
