@@ -728,6 +728,21 @@ body {
   }
 }
 
+/* Touch Optimization */
+.btn,
+.tile,
+.nav-menu a,
+.footer-link {
+  touch-action: manipulation;
+  /* Prevent double-tap zoom delay */
+}
+
+/* Ensure minimum touch target size */
+.btn,
+.nav-menu a {
+  min-height: 44px;
+}
+
 /* Responsive */
 @media (max-width: 920px) {
   .cards-grid {
@@ -736,10 +751,23 @@ body {
 
   .hero-inner {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-points {
+    justify-content: center;
   }
 
   .card-body {
     grid-template-columns: 1fr;
+  }
+
+  .illus {
+    min-height: 200px;
   }
 
   .alphabet-grid {
@@ -765,10 +793,33 @@ body {
     display: none;
     flex-direction: column;
     min-width: 200px;
+    z-index: 100;
   }
 
   .nav-menu.show {
     display: flex
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .guide-card-mockup {
+    order: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
   }
 }
 

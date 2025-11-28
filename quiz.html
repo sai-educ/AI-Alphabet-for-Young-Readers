@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .quiz-wrap {
-      max-width: 700px;
+      max-width: 900px;
       margin: 0 auto;
-      text-align: center;
     }
 
     .progress-bar {
@@ -39,6 +38,7 @@
       border-radius: 20px;
       box-shadow: var(--shadow);
       margin-bottom: 2rem;
+      text-align: center;
     }
 
     .q-text {
@@ -62,6 +62,8 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
+      touch-action: manipulation;
+      min-height: 44px;
     }
 
     .option-btn:hover {
@@ -85,22 +87,65 @@
       text-align: center;
     }
 
-    /* Certificate Styles */
-    #certificate-container {
-      display: none;
-      text-align: center;
-      animation: slideUp 0.5s ease;
+    /* Dashboard Styles */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .dash-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .topic-bar {
+      margin-bottom: 1.2rem;
+    }
+
+    .topic-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .t-progress {
+      height: 8px;
+      background: #f0f4f8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .t-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
     }
 
     .cert-preview {
       max-width: 100%;
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      margin: 2rem 0;
+      margin: 1rem 0;
     }
 
     .hidden {
       display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @keyframes slideUp {
@@ -113,6 +158,10 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    #dashboard-section {
+      animation: slideUp 0.5s ease;
     }
   </style>
 </head>
@@ -136,7 +185,7 @@
   <main id="main" class="wrap">
 
     <!-- Quiz Section -->
-    <div id="quiz-section" class="quiz-wrap">
+    <div id="quiz-section" style="max-width: 700px; margin: 0 auto;">
       <header class="page-head">
         <h1>AI Master Quiz</h1>
         <p class="muted">Answer 15 questions to earn your certificate!</p>
@@ -145,7 +194,7 @@
       <div class="progress-bar">
         <div class="progress-fill" id="progress"></div>
       </div>
-      <p style="font-weight:700; color:var(--brand);">Question <span id="q-num">1</span> of 15</p>
+      <p style="font-weight:700; color:var(--brand); text-align:center;">Question <span id="q-num">1</span> of 15</p>
 
       <div class="question-card">
         <div class="q-text" id="question">Loading...</div>
@@ -156,34 +205,53 @@
           <button id="submit-text" class="btn btn-primary">Submit</button>
         </div>
       </div>
-      <div id="feedback" style="height: 2rem; font-weight: 800;"></div>
+      <div id="feedback" style="height: 2rem; font-weight: 800; text-align:center;"></div>
     </div>
 
-    <!-- Certificate Section -->
-    <div id="certificate-section" class="quiz-wrap hidden">
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="hidden">
       <header class="page-head">
         <h1>🎉 Amazing Job!</h1>
-        <p class="muted">You scored <span id="final-score"></span>/15. You are an AI Master!</p>
+        <p class="muted">You scored <span id="final-score"></span>/15. Check out your learning profile below.</p>
       </header>
 
-      <div class="card" style="padding: 2rem;">
-        <label for="student-name" style="display:block; font-weight:700; margin-bottom:0.5rem;">Enter your name for the
-          certificate:</label>
-        <input type="text" id="student-name" class="input-answer" placeholder="Your Name"
-          style="width:100%; max-width:300px;">
-        <br>
-        <button id="gen-btn" class="btn btn-primary btn-large">Generate Certificate ✨</button>
-      </div>
-    </div>
+      <div class="dashboard-grid">
+        <!-- Left: Certificate -->
+        <div class="dash-card" style="text-align:center;">
+          <h2 style="margin-top:0;">🎓 Get Certificate</h2>
+          <p class="muted">Enter your name to make it official.</p>
 
-    <div id="download-section" class="quiz-wrap hidden">
-      <h2>Your Certificate</h2>
-      <canvas id="cert-canvas" width="800" height="600" style="display:none;"></canvas>
-      <img id="cert-img" class="cert-preview" alt="Your Certificate">
-      <br>
-      <a id="download-link" class="btn btn-primary btn-large" download="AI-Master-Certificate.png">Download Image ⬇️</a>
-      <br><br>
-      <button onclick="location.reload()" class="btn btn-ghost">Take Quiz Again</button>
+          <div id="cert-form">
+            <label for="student-name" class="sr-only">Your Name</label>
+            <input type="text" id="student-name" class="input-answer" placeholder="Your Name" style="width:100%;">
+            <br>
+            <button id="gen-btn" class="btn btn-primary btn-large" style="width:100%;">Generate ✨</button>
+          </div>
+
+          <div id="cert-display" class="hidden">
+            <canvas id="cert-canvas" width="800" height="600" style="display:none;"></canvas>
+            <img id="cert-img" class="cert-preview" alt="Your Certificate">
+            <a id="download-link" class="btn btn-primary" download="AI-Master-Certificate.png"
+              style="width:100%;">Download Image ⬇️</a>
+          </div>
+        </div>
+
+        <!-- Right: Analytics -->
+        <div class="dash-card">
+          <h2 style="margin-top:0;">📊 Learning Profile</h2>
+          <p class="muted">Here is how you did on each topic:</p>
+          <div id="topic-stats"></div>
+
+          <div style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px;">
+            <h4 style="margin:0 0 0.5rem;">💡 Recommendation:</h4>
+            <p id="recommendation" style="font-size: 0.95rem; margin:0; color:var(--muted);">Great work! You are ready
+              to teach others.</p>
+          </div>
+          <div style="margin-top: 1.5rem; text-align:center;">
+            <button onclick="location.reload()" class="btn btn-ghost">Take Quiz Again</button>
+          </div>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -199,31 +267,37 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
+    // Topics: Core, Ethics, Tech, Logic
     const QUESTIONS = [
-      { q: "What does 'A' stand for in our alphabet?", a: "ALGORITHM", type: "text" },
-      { q: "A 'Bot' is short for what word?", a: "ROBOT", type: "text" },
-      { q: "Which of these is a coding language?", options: ["Snake", "Python", "Lizard", "Turtle"], a: "Python", type: "choice" },
-      { q: "Data is used by computers to learn...", options: ["Magic Tricks", "Patterns", "Cooking", "Dancing"], a: "Patterns", type: "choice" },
-      { q: "Ethics is about knowing right from...", a: "WRONG", type: "text" },
-      { q: "A video that looks real but is made by AI is called a...", options: ["Deepfake", "Photoshop", "Glitch", "Selfie"], a: "Deepfake", type: "choice" },
-      { q: "When a game freezes or acts weird, it's called a...", a: "GLITCH", type: "text" },
-      { q: "When AI makes up a wrong answer, it is...", options: ["Dreaming", "Hallucinating", "Lying", "Joking"], a: "Hallucinating", type: "choice" },
-      { q: "The massive network connecting devices globally is the...", a: "INTERNET", type: "text" },
-      { q: "AI is good at calculation, but humans are good at...", options: ["Judgement", "Math", "Sleeping", "Charging"], a: "Judgement", type: "choice" },
-      { q: "To find something online, you type a...", options: ["Password", "Keyword", "Secret", "Code"], a: "Keyword", type: "choice" },
-      { q: "Machine Learning helps computers learn from...", options: ["Books", "Examples", "Teachers", "Videos"], a: "Examples", type: "choice" },
-      { q: "A Neural Network mimics which human organ?", a: "BRAIN", type: "text" },
-      { q: "What is the input you give to an AI called?", a: "PROMPT", type: "text" },
-      { q: "Binary code is made of Zeroes and...", a: "ONES", type: "text" }
+      { q: "What does 'A' stand for in our alphabet?", a: "ALGORITHM", type: "text", topic: "Core Concepts" },
+      { q: "A 'Bot' is short for what word?", a: "ROBOT", type: "text", topic: "Tech & Tools" },
+      { q: "Which of these is a coding language?", options: ["Snake", "Python", "Lizard", "Turtle"], a: "Python", type: "choice", topic: "Coding & Logic" },
+      { q: "Data is used by computers to learn...", options: ["Magic Tricks", "Patterns", "Cooking", "Dancing"], a: "Patterns", type: "choice", topic: "Core Concepts" },
+      { q: "Ethics is about knowing right from...", a: "WRONG", type: "text", topic: "Ethics & Safety" },
+      { q: "A video that looks real but is made by AI is called a...", options: ["Deepfake", "Photoshop", "Glitch", "Selfie"], a: "Deepfake", type: "choice", topic: "Ethics & Safety" },
+      { q: "When a game freezes or acts weird, it's called a...", a: "GLITCH", type: "text", topic: "Tech & Tools" },
+      { q: "When AI makes up a wrong answer, it is...", options: ["Dreaming", "Hallucinating", "Lying", "Joking"], a: "Hallucinating", type: "choice", topic: "Ethics & Safety" },
+      { q: "The massive network connecting devices globally is the...", a: "INTERNET", type: "text", topic: "Tech & Tools" },
+      { q: "AI is good at calculation, but humans are good at...", options: ["Judgement", "Math", "Sleeping", "Charging"], a: "Judgement", type: "choice", topic: "Ethics & Safety" },
+      { q: "To find something online, you type a...", options: ["Password", "Keyword", "Secret", "Code"], a: "Keyword", type: "choice", topic: "Coding & Logic" },
+      { q: "Machine Learning helps computers learn from...", options: ["Books", "Examples", "Teachers", "Videos"], a: "Examples", type: "choice", topic: "Core Concepts" },
+      { q: "A Neural Network mimics which human organ?", a: "BRAIN", type: "text", topic: "Core Concepts" },
+      { q: "What is the input you give to an AI called?", a: "PROMPT", type: "text", topic: "Tech & Tools" },
+      { q: "Binary code is made of Zeroes and...", a: "ONES", type: "text", topic: "Coding & Logic" }
     ];
 
     let currentIdx = 0;
     let score = 0;
+    let topicStats = {
+      "Core Concepts": { total: 0, correct: 0 },
+      "Ethics & Safety": { total: 0, correct: 0 },
+      "Tech & Tools": { total: 0, correct: 0 },
+      "Coding & Logic": { total: 0, correct: 0 }
+    };
 
     const els = {
       quizSec: document.getElementById('quiz-section'),
-      certSec: document.getElementById('certificate-section'),
-      dlSec: document.getElementById('download-section'),
+      dashSec: document.getElementById('dashboard-section'),
       qText: document.getElementById('question'),
       opts: document.getElementById('options-area'),
       inpArea: document.getElementById('input-area'),
@@ -237,10 +311,18 @@
       genBtn: document.getElementById('gen-btn'),
       canvas: document.getElementById('cert-canvas'),
       img: document.getElementById('cert-img'),
-      dlLink: document.getElementById('download-link')
+      dlLink: document.getElementById('download-link'),
+      certForm: document.getElementById('cert-form'),
+      certDisplay: document.getElementById('cert-display'),
+      topicStats: document.getElementById('topic-stats'),
+      rec: document.getElementById('recommendation')
     };
 
     function init() {
+      // Initialize stats
+      QUESTIONS.forEach(q => {
+        if (topicStats[q.topic]) topicStats[q.topic].total++;
+      });
       renderQuestion();
     }
 
@@ -279,6 +361,7 @@
 
       if (isCorrect) {
         score++;
+        topicStats[q.topic].correct++;
         els.feed.style.color = '#18a558';
         els.feed.textContent = 'Correct! 🎉';
         confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
@@ -299,9 +382,42 @@
 
     function finishQuiz() {
       els.quizSec.classList.add('hidden');
-      els.certSec.classList.remove('hidden');
+      els.dashSec.classList.remove('hidden');
       els.finalScore.textContent = score;
+      renderAnalytics();
       confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+    }
+
+    function renderAnalytics() {
+      els.topicStats.innerHTML = '';
+      let weakTopics = [];
+
+      for (const [topic, data] of Object.entries(topicStats)) {
+        if (data.total === 0) continue;
+        const pct = Math.round((data.correct / data.total) * 100);
+        let color = '#18a558'; // Green
+        if (pct < 50) { color = '#f04a5b'; weakTopics.push(topic); } // Red
+        else if (pct < 80) { color = '#ffb703'; } // Yellow
+
+        const html = `
+          <div class="topic-bar">
+            <div class="topic-label">
+              <span>${topic}</span>
+              <span>${data.correct}/${data.total}</span>
+            </div>
+            <div class="t-progress">
+              <div class="t-fill" style="width: ${pct}%; background: ${color};"></div>
+            </div>
+          </div>
+        `;
+        els.topicStats.innerHTML += html;
+      }
+
+      if (weakTopics.length > 0) {
+        els.rec.textContent = `You're doing great! Try reviewing these topics to become a master: ${weakTopics.join(', ')}.`;
+      } else {
+        els.rec.textContent = "Amazing! You have mastered all the topics. You are ready to be an AI Ambassador!";
+      }
     }
 
     els.genBtn.onclick = () => {
@@ -361,8 +477,8 @@
       els.img.src = dataUrl;
       els.dlLink.href = dataUrl;
 
-      els.certSec.classList.add('hidden');
-      els.dlSec.classList.remove('hidden');
+      els.certForm.classList.add('hidden');
+      els.certDisplay.classList.remove('hidden');
       confetti({ particleCount: 300, spread: 120, origin: { y: 0.6 } });
     }
 
